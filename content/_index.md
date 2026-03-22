@@ -8,14 +8,14 @@ sections:
   - block: hero
     content:
       title: |
-        Wowchemy
-        Research Group
+        先进集成电路材料与
+        类脑芯片课题组
       image:
-        filename: welcome.jpg
+        filename: brain-chip.jpg # 使用新生成的类脑芯片图片
       text: |
         <br>
         
-        The **Wowchemy Research Group** has been a center of excellence for Artificial Intelligence research, teaching, and practice since its founding in 2016.
+        **先进集成电路材料与类脑芯片课题组 (Advanced IC Materials & Neuromorphic Chips Lab)** 致力于突破后摩尔时代的算力瓶颈，聚焦于新型半导体材料、忆阻器器件、以及具有高能效比的神经形态（类脑）计算架构的研究与应用。
   
   - block: collection
     content:
