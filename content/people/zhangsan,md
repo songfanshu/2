@@ -1,0 +1,80 @@
+---
+# 基本信息
+title: 张三              # 姓名
+role: 教授               # 职位/角色
+avatar: avatars/zhangsan.jpg  # 头像路径（可选）
+
+# 所属机构
+organizations:
+  - name: 计算机学院
+    url: https://cs.university.edu
+
+# 社交链接
+social:
+  - icon: envelope
+    icon_pack: fas
+    link: mailto:zhangsan@university.edu
+  - icon: google-scholar
+    icon_pack: ai
+    link: https://scholar.google.com/citations?user=xxxxx
+  - icon: github
+    icon_pack: fab
+    link: https://github.com/zhangsan
+  - icon: linkedin
+    icon_pack: fab
+    link: https://linkedin.com/in/zhangsan
+
+# 分组（用于页面分类）
+user_groups:
+  - 教授
+
+# 研究兴趣
+interests:
+  - 机器学习
+  - 深度学习
+  - 计算机视觉
+
+# 教育背景
+education:
+  courses:
+    - course: 计算机科学博士
+      institution: 清华大学
+      year: 2015
+    - course: 计算机科学硕士
+      institution: 北京大学
+      year: 2010
+    - course: 计算机科学学士
+      institution: 浙江大学
+      year: 2007
+
+# 个人简介（显示在页面底部）
+bio: "张三教授是机器学习领域的专家，发表了50余篇顶级会议论文。"
+
+# 联系方式（可选）
+contact:
+  - type: office
+    content: "信息学院楼A座301室"
+  - type: phone
+    content: "010-12345678"
+---
+
+## 简介
+
+张三教授，博士生导师，主要研究方向包括机器学习、深度学习和计算机视觉。在顶级会议和期刊发表论文50余篇，主持国家自然科学基金项目多项。
+
+## 研究领域
+
+- **机器学习理论**：研究统计学习理论、表示学习等
+- **深度学习算法**：开发新型神经网络架构和训练方法
+- **计算机视觉应用**：图像识别、目标检测、图像生成等
+
+## 学术服务
+
+- 担任多个顶级会议（ICML, NeurIPS, CVPR）的程序委员会委员
+- 担任《机器学习学报》编委
+
+## 荣誉与奖励
+
+- 国家杰出青年科学基金获得者（2023）
+- 教育部自然科学一等奖（2020）
+- 吴文俊人工智能科学技术奖（2018）
