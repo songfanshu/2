@@ -64,6 +64,6 @@ highlight_name: false
 # Organizational groups that you belong to (for People widget)
 #   Set this to `[]` or comment out if you are not using People widget.
 user_groups:
-  - Professor
+  - Researchers
 ---
 刘钢教授是先进集成电路材料与类脑芯片课题组的负责人，长期从事类脑与智能仿生器件、芯片和集成微系统的研究，发展了国际上尺寸最小、集成规模最大的分子智能计算芯片以及国际上第一个全硬件实现的光电融合感存算一体化智能芯片与集成微系统，并与航天科工集团等单位开展智能光电载荷的工程化验证工作。研究成果在Nature、Nature Commun.、Science Robot.、Science Adv.、Adv. Mater.、Adv. Funct. Mater.、JACS、ACS Nano、Nano Lett.以及Chem. Soc. Rev.等国际顶级期刊以及IEEE ICASSP、IEEE Sensor和ISCAS等国际顶会上发表150余篇学术论文，申请中国发明专利和实用新型专利共69项，主编中英文教材各1本、参编学术著作4章。研究成果先后获教育部自然科学二等奖、中国电子学会自然科学二等奖和浙江省自然科学一等奖等科技奖励与荣誉。 
