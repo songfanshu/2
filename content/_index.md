@@ -16,7 +16,10 @@ sections:
         <br>
         
         **先进集成电路材料与类脑芯片课题组 (Advanced IC Materials & Neuromorphic Chips Lab)** 致力于突破后摩尔时代的算力瓶颈，聚焦于新型半导体材料、忆阻器器件、以及具有高能效比的神经形态（类脑）计算架构的研究与应用。
-  
+  design:
+      background:
+        color: '#08172e' # 深蓝背景
+        text_color_light: true
   - block: collection
     content:
       title: Latest News
@@ -35,26 +38,19 @@ sections:
     design:
       view: card
       columns: '1'
-  
+  background:
+        color: '#ffffff' # 纯白背景
   - block: markdown
     content:
       title:
       subtitle: ''
       text:
-    design:
+   design:
       columns: '1'
       background:
-        image: 
-          filename: coders.jpg
-          filters:
-            brightness: 1
-          parallax: false
-          position: center
-          size: cover
-          text_color_light: true
+        color: '#f0f7ff' # 浅蓝色背景
       spacing:
-        padding: ['20px', '0', '20px', '0']
-      css_class: fullscreen
+        padding: ['80px', '0', '80px', '0']
 
   - block: collection
     content:
@@ -68,7 +64,8 @@ sections:
     design:
       view: citation
       columns: '1'
-
+      background:
+        color: '#ffffff' # 纯白背景
   - block: markdown
     content:
       title:
@@ -77,4 +74,9 @@ sections:
         {{% cta cta_link="./people/" cta_text="Meet the team →" %}}
     design:
       columns: '1'
+      background:
+        color: '#1a56db' # 亮蓝色背景
+        text_color_light: true
+      spacing:
+        padding: ['50px', '0', '50px', '0']
 ---
