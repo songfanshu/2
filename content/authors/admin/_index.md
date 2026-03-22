@@ -3,8 +3,8 @@
 title: 刘钢
 
 # Full Name (for SEO)
-first_name: 刘杨辉
-last_name: 汪宏
+first_name: liu
+last_name: gang
 
 # Is this the primary user of the site?
 superuser: true
@@ -15,7 +15,7 @@ role: 教授，博士生导师，课题组负责人 (PI)
 # Organizations/Affiliations
 organizations:
   - name: 中山大学
-    url: ''
+    url: 'https://materials.sysu.edu.cn/teacher/690'
 
 # Short bio (displayed in user profile at end of posts)
 bio: 主要研究方向包括新型微电子材料、非易失性存储器（忆阻器）以及类脑计算芯片设计。
@@ -26,12 +26,12 @@ interests:
 
 education:
   courses:
-    - course: PhD in Artificial Intelligence
-      institution: Stanford University
-      year: 2012
-    - course: MEng in Artificial Intelligence
-      institution: Massachusetts Institute of Technology
-      year: 2009
+    - course:化学工程与工艺，工学学士
+      institution: 上海交通大学
+      year: 2000.09 - 2004.06
+    - course: 生化系统分子工程，理学硕士
+      institution:新加坡-麻省理工学院学术联盟
+      year: 2004.07 - 2005.06
     - course: BSc in Artificial Intelligence
       institution: Massachusetts Institute of Technology
       year: 2008
