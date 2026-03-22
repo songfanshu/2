@@ -26,12 +26,12 @@ interests:
 
 education:
   courses:
-    - course:化学工程与工艺，工学学士
+    - course: 化学工程与工艺，工学学士
       institution: 上海交通大学
-      year: 2000.09 - 2004.06
+      year: 2000-2004
     - course: 生化系统分子工程，理学硕士
-      institution:新加坡-麻省理工学院学术联盟
-      year: 2004.07 - 2005.06
+      institution: 新加坡-麻省理工学院学术联盟
+      year: 2004-2005
     - course: BSc in Artificial Intelligence
       institution: Massachusetts Institute of Technology
       year: 2008
