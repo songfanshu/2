@@ -1,30 +1,30 @@
 ---
 # Display name
-title: Nelson Bighetti
+title: 刘钢
 
 # Full Name (for SEO)
-first_name: Nelson
-last_name: Bighetti
+first_name: 刘杨辉
+last_name: 汪宏
 
 # Is this the primary user of the site?
 superuser: true
 
 # Role/position
-role: Professor of Artificial Intelligence
+role: 教授，博士生导师，课题组负责人 (PI)
 
 # Organizations/Affiliations
 organizations:
-  - name: Stanford University
+  - name: 中山大学
     url: ''
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include distributed robotics, mobile computing and programmable matter.
-
+bio: 主要研究方向包括新型微电子材料、非易失性存储器（忆阻器）以及类脑计算芯片设计。
 interests:
-  - Artificial Intelligence
-  - Computational Linguistics
-  - Information Retrieval
-
+  - 先进集成电路材料 (Advanced IC Materials) 
+  - 神经形态计算 (Neuromorphic Computing)
+  - 忆阻器与新型存储器件 (Memristors & Emerging Memory)
+---
+刘钢教授是先进集成电路材料与类脑芯片课题组的负责人...（填入具体的中文介绍）
 education:
   courses:
     - course: PhD in Artificial Intelligence
