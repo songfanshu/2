@@ -1,22 +1,6 @@
-# Languages
-#   Create a section for each of your site's languages.
-#   Documentation: https://docs.hugoblox.com/reference/language/
-
-# Default language
-en:
-  languageCode: en-us
-  # Uncomment for multi-lingual sites, and move English content into `en` sub-folder.
-  #contentDir: content/en
-
-# Uncomment the lines below to configure your website in a second language.
-#zh:
-#  languageCode: zh-Hans
-#  contentDir: content/zh
-#  title: Chinese website title...
-#  params:
-#    description: Site description in Chinese...
-#  menu:
-#    main:
-#      - name: 传
-#        url: '#about'
-#        weight: 1
+# 默认语言设置
+zh:
+  languageCode: zh-Hans
+  title: 先进集成电路材料与类脑芯片课题组
+  params:
+    description: 专注于先进集成电路材料、神经形态计算与类脑芯片架构的顶尖科研团队。
