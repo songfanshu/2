@@ -36,7 +36,7 @@ sections:
       view: card
       columns: '1'
       background:
-        color: '#ffffff'
+        color: '#08172e'
 
   - block: markdown
     content:
@@ -52,7 +52,7 @@ sections:
 
   - block: collection
     content:
-      title: '预印本与学术论文'
+      title: '学术论文'
       text: ''
       count: 5
       filters:
@@ -63,7 +63,7 @@ sections:
       view: citation
       columns: '1'
       background:
-        color: '#ffffff'
+        color: '#08172e'
 
   - block: markdown
     content:
