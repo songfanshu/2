@@ -6,40 +6,40 @@
 # Appearance
 
 appearance:
-  theme_day: blue     # 将 minimal 改为 blue
-  theme_night: ocean  # 增加或修改夜间模式为 ocean
-  font: native
-  font_size: L
+  theme_day: blue     # 日间主题改为 blue
+  theme_night: ocean  # 夜间主题改为 ocean
+  font: native        # 字体使用系统默认
+  font_size: L        # 字体大小：L(大)/M(中)/S(小)
 
 # SEO
 
 marketing:
   seo:
-    site_type: Organization
-    local_business_type: ''
-    org_name: ''
-    description: 'A highly-customizable Hugo research group theme powered by Wowchemy website builder.'
-    twitter: 'GetResearchDev'
+    site_type: Organization    # 网站类型：组织/个人/企业等
+    local_business_type: ''    # 本地业务类型（如留空）
+    org_name: ''               # 组织名称
+    description: 'A highly-customizable Hugo research group theme...'  # 网站描述
+    twitter: 'GetResearchDev'  # Twitter账号
   analytics:
-    google_analytics: ''
-    baidu_tongji: ''
-    google_tag_manager: ''
-    microsoft_clarity: ''
+    google_analytics: ''       # Google Analytics追踪ID
+    baidu_tongji: ''           # 百度统计ID
+    google_tag_manager: ''     # Google Tag Manager ID
+    microsoft_clarity: ''      # Microsoft Clarity ID
   verification:
-    google: ''
-    baidu: ''
+    google: ''                 # Google站点验证码
+    baidu: ''                  # 百度站点验证码
 
 # Site header
 
 header:
   navbar:
-    enable: true
-    align: r
-    show_logo: true
-    show_language: false
-    show_day_night: true
-    show_search: true
-    highlight_active_link: false
+    enable: true              # 启用导航栏
+    align: r                  # 导航栏对齐方式：r(右)/l(左)/c(中)
+    show_logo: true           # 显示网站Logo
+    show_language: false      # 不显示语言切换
+    show_day_night: true      # 显示日/夜间模式切换按钮
+    show_search: true         # 显示搜索框
+    highlight_active_link: false  # 不高亮当前页面链接
 
 # Site footer
 
@@ -48,71 +48,65 @@ footer:
     notice: '© {year} Me. This work is licensed under {license}'
     license:
       enable: true
-      allow_derivatives: false
-      share_alike: true
-      allow_commercial: false
+      allow_derivatives: false    # 不允许衍生作品
+      share_alike: true           # 相同方式共享
+      allow_commercial: false     # 不允许商业使用
 
 # Localization
 
 locale:
-  date_format: 'Jan 2, 2006'
-  time_format: '3:04 PM'
-  address_format: en-us
+  date_format: 'Jan 2, 2006'    # 日期格式（Go语言格式）
+  time_format: '3:04 PM'        # 时间格式
+  address_format: en-us         # 地址格式：美国英语
 
 # Site features
 
 features:
   syntax_highlighter:
-    enable: false
+    enable: false               # 禁用代码语法高亮
     extra_languages:
       - r
       - latex
   math:
-    enable: false
+    enable: false               # 禁用数学公式（LaTeX）
   privacy_pack:
-    enable: false
+    enable: false               # 禁用隐私包（GDPR相关）
   repository:
-    url: 'https://github.com/<username>/<repository>'
-    content_dir: content
-    branch: main
+    url: 'https://github.com/<username>/<repository>'  # Git仓库地址
+    content_dir: content        # 内容目录
+    branch: main                # 主分支
   avatar:
-    gravatar: false
-    shape: circle
+    gravatar: false             # 不使用Gravatar头像
+    shape: circle               # 头像形状：圆形
   comment:
-    provider: ''
+    provider: ''                # 评论系统提供商（disqus/commento/giscus等）
     disqus:
       shortname: ''
       show_count: true
-    commento:
-      url: ''
-    giscus:
-      repo: ''
-      repo_id: ''
-      category: ''
-      category_id: ''
+    # ... 其他评论系统配置
   search:
-    provider: wowchemy
+    provider: wowchemy          # 搜索提供商：内置搜索
     algolia:
-      app_id: ''
+      app_id: ''                # Algolia搜索配置（如使用）
       api_key: ''
       index_name: ''
       show_logo: false
   map:
-    provider: 'mapnik'
-    api_key: ''
-    zoom: 15
+    provider: 'mapnik'          # 地图提供商
+    api_key: ''                 # 地图API密钥
+    zoom: 15                    # 默认缩放级别
 
 # Extensions
 
 extensions:
   decap_cms:
-    branch: main
-    local_backend: false
+    branch: main                # Decap CMS的分支
+    local_backend: false        # 是否使用本地后端
   academicons:
-    enable: true
+    enable: true                # 启用学术图标（Google Scholar等）
 
 # Citation style
 
 publications:
-  date_format: January 2006
-  citation_style: apa
+  date_format: January 2006     # 出版物日期格式
+  citation_style: apa           # 引用样式：APA格式
