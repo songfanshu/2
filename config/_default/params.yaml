@@ -6,8 +6,8 @@
 # Appearance
 
 appearance:
-  theme_day: minimal
-  theme_night:
+  theme_day: blue     # 将 minimal 改为 blue
+  theme_night: ocean  # 增加或修改夜间模式为 ocean
   font: native
   font_size: L
 
