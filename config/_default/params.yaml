@@ -55,9 +55,9 @@ footer:
 # Localization
 
 locale:
-  date_format: 'Jan 2, 2006'    # 日期格式（Go语言格式）
-  time_format: '3:04 PM'        # 时间格式
-  address_format: en-us         # 地址格式：美国英语
+  date_format: '2006年1月2日'    # 中国日期格式
+  time_format: '15:04'           # 24小时制时间格式
+  address_format: zh-cn          # 中国地址格式
 
 # Site features
 
