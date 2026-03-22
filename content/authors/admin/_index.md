@@ -10,11 +10,11 @@ last_name: gang
 superuser: true
 
 # Role/position
-role: 教授，博士生导师，课题组负责人 (PI)
+role: 教授，博士生导师，课题组负责人 
 
 # Organizations/Affiliations
 organizations:
-  - name: 中山大学
+  - name: 中山大学材料学院
     url: 'https://materials.sysu.edu.cn/teacher/690'
 
 # Short bio (displayed in user profile at end of posts)
@@ -32,9 +32,17 @@ education:
     - course: 生化系统分子工程，理学硕士
       institution: 新加坡-麻省理工学院学术联盟
       year: 2004-2005
-    - course: BSc in Artificial Intelligence
-      institution: Massachusetts Institute of Technology
-      year: 2008
+    - course: 化学工程，哲学博士
+      institution: 新加坡国立大学士
+      year: 2006-2009
+    - course: Research Associate
+      institution: 南洋理工大学，材料科学与工程学院
+      year: 2010
+    - course: Research Fellow
+      institution: 加坡国立大学，化学与生物分子工程系
+      year: 2010-2012
+
+
 
 # Social/Academic Networking
 # For available icons, see: https://docs.hugoblox.com/getting-started/page-builder/#icons
