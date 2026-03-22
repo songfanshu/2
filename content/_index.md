@@ -1,227 +1,217 @@
----
 # ============================================================================
-# 首页配置文件
+# 网站配置文件
 # ============================================================================
-# 文件位置: content/_index.md
-# 作用: 定义网站首页的布局和内容
-
-# 留空标题以使用网站设置的标题
-title: ''
-
-# 页面创建日期
-date: 2026-03-20
-
-# 页面类型: landing 表示使用区块式落地页布局
-type: landing
----
+# 文件位置: config/_default/params.yaml
+# 作用: 配置网站的外观、功能、SEO等参数
 
 # ============================================================================
-# 首页区块定义
-# 以下 sections 定义了首页的各个区块，按从上到下的顺序显示
+# 外观配置 (Appearance)
+# 控制网站的主题、字体、大小等视觉元素
 # ============================================================================
-sections:
+appearance:
+  # 日间主题: blue (蓝色主题)
+  # 可选: minimal, classic, blue, ocean, forest 等
+  theme_day: blue
+  # 夜间主题: ocean (海洋主题)
+  theme_night: ocean
+  # 字体: native (使用系统默认字体)
+  # 可选: native, custom
+  font: native
+  # 字体大小: L (大)
+  # 可选: XS, S, M, L, XL
+  font_size: L
+
+# ============================================================================
+# SEO与营销配置 (Marketing)
+# 用于搜索引擎优化和网站统计分析
+# ============================================================================
+marketing:
+  # SEO 配置
+  seo:
+    # 网站类型: Organization (组织)
+    site_type: Organization
+    # 本地业务类型 (留空)
+    local_business_type: ''
+    # 组织名称 (留空，使用网站标题)
+    org_name: ''
+    # 网站描述，会显示在搜索引擎结果中
+    description: '先进集成电路材料与类脑芯片课题组 - 致力于突破后摩尔时代的算力瓶颈'
+    # Twitter 账号
+    twitter: 'GetResearchDev'
   
-  # --------------------------------------------------------------------------
-  # 区块1: 英雄横幅区域 (Hero Block)
-  # 这是页面最顶部的欢迎区域，通常包含大标题、简介和背景图片
-  # --------------------------------------------------------------------------
-  - block: hero
-    content:
-      # 主标题: 课题组名称
-      title: '先进集成电路材料与类脑芯片课题组'
-      
-      # 图片配置
-      image:
-        # 图片文件名
-        # 存放位置: assets/media/brain-chip.png 或 static/media/brain-chip.png
-        filename: brain-chip.png
-      
-      # 文字介绍内容
-      # 使用 | 符号可以保留文本中的换行格式
-      text: |
-        先进集成电路材料与类脑芯片课题组 (Advanced IC Materials & Neuromorphic Chips Lab) 致力于突破后摩尔时代的算力瓶颈，聚焦于新型半导体材料、忆阻器器件、以及具有高能效比的神经形态（类脑）计算架构的研究与应用。
-    
-    # 设计样式配置
-    design:
-      background:
-        # 背景颜色: 深蓝色 (#08172e)
-        # 营造专业、稳重的学术氛围
-        color: '#08172e'
-        # 文字颜色: 亮色 (白色)
-        # 确保文字在深色背景上清晰可读
-        text_color_light: true
+  # 网站统计分析配置
+  analytics:
+    # Google Analytics 追踪ID (格式: UA-XXXXX-Y 或 G-XXXXXXX)
+    google_analytics: ''
+    # 百度统计ID
+    baidu_tongji: ''
+    # Google Tag Manager ID
+    google_tag_manager: ''
+    # Microsoft Clarity ID
+    microsoft_clarity: ''
+  
+  # 网站验证配置 (用于搜索引擎站长工具)
+  verification:
+    # Google Search Console 验证码
+    google: ''
+    # 百度站长平台验证码
+    baidu: ''
 
-  # --------------------------------------------------------------------------
-  # 区块2: 最新动态区域 (News Collection Block)
-  # 显示课题组的最新新闻、公告和动态
-  # --------------------------------------------------------------------------
-  - block: collection
-    content:
-      # 区块标题
-      title: '最新动态 (News)'
-      
-      # 副标题 (留空则不显示)
-      subtitle: ''
-      
-      # 额外说明文字 (留空则不显示)
-      text: ''
-      
-      # 显示的内容数量: 显示最新的5条动态
-      count: 5
-      
-      # 内容筛选条件
-      filters:
-        # 按作者筛选 (空表示显示所有作者)
-        author: ''
-        # 按分类筛选 (空表示显示所有分类)
-        category: ''
-        # 是否排除精选内容
-        # false: 包含精选内容; true: 排除精选内容
-        exclude_featured: false
-        # 按出版物类型筛选 (空表示全部)
-        publication_type: ''
-        # 按标签筛选 (空表示全部)
-        tag: ''
-      
-      # 跳过的内容数量: 0 表示从第一条开始显示
-      offset: 0
-      
-      # 排序方式
-      # desc: 降序排列，最新的内容显示在最前面
-      # asc: 升序排列，最旧的内容显示在最前面
-      order: desc
-      
-      # 内容类型: post
-      # 表示从 content/post/ 目录读取新闻文章
-      page_type: post
-    
-    # 设计样式配置
-    design:
-      # 显示视图: card (卡片式)
-      # 每个新闻以卡片形式展示，包含标题、摘要、日期等
-      view: card
-      
-      # 列数: '1' 表示单列布局
-      # 可以设置为 '2' 或 '3' 实现多列网格布局
-      columns: '1'
-      
-      # 背景配置
-      background:
-        # 背景颜色: 蓝色 (#15607a)
-        # 与英雄区的深蓝色形成层次感
-        color: '#15607a'
+# ============================================================================
+# 页眉配置 (Header)
+# 控制网站顶部导航栏的显示
+# ============================================================================
+header:
+  navbar:
+    # 是否启用导航栏
+    enable: true
+    # 导航栏对齐方式: l(左), r(右), c(中)
+    align: r
+    # 是否显示网站 Logo
+    show_logo: true
+    # 是否显示语言切换按钮
+    show_language: false
+    # 是否显示日/夜间模式切换按钮
+    show_day_night: true
+    # 是否显示搜索框
+    show_search: true
+    # 是否高亮当前激活的页面链接
+    highlight_active_link: false
 
-  # --------------------------------------------------------------------------
-  # 区块3: 课题组愿景区域 (Markdown Block)
-  # 使用 Markdown 格式展示课题组的愿景、使命和研究方向
-  # --------------------------------------------------------------------------
-  - block: markdown
-    content:
-      # 区块标题
-      title: '课题组愿景'
-      
-      # 副标题 (留空)
-      subtitle: ''
-      
-      # Markdown 格式的文字内容
-      # 可以包含粗体、斜体、链接等 Markdown 语法
-      text: '我们在新型微电子材料、非易失性存储器和神经形态计算领域不断探索，旨在研发下一代高能效、高集成度的类脑芯片。我们的研究覆盖从底层纳米材料生长、器件微纳加工，到顶层神经网络算法及芯片架构设计的全链条。'
-    
-    # 设计样式配置
-    design:
-      # 列数: 单列布局
-      columns: '1'
-      
-      # 背景配置
-      background:
-        # 背景颜色: 浅蓝色 (#f0f7ff)
-        # 柔和舒适，与深色区块形成视觉对比
-        color: '#f0f7ff'
-      
-      # 间距配置
-      spacing:
-        # 内边距: [上, 右, 下, 左]
-        # 设置上下各80px的内边距，增加区块的呼吸感
-        padding: ['80px', '0', '80px', '0']
+# ============================================================================
+# 页脚配置 (Footer)
+# 控制网站底部的版权信息
+# ============================================================================
+footer:
+  copyright:
+    # 版权声明文本
+    # {year} 会被替换为当前年份
+    # {license} 会被替换为许可证链接
+    notice: '© {year} 先进集成电路材料与类脑芯片课题组. 保留所有权利'
+    # 许可证配置
+    license:
+      # 是否启用许可证
+      enable: true
+      # 是否允许衍生作品
+      allow_derivatives: false
+      # 是否要求相同方式共享
+      share_alike: true
+      # 是否允许商业使用
+      allow_commercial: false
 
-  # --------------------------------------------------------------------------
-  # 区块4: 学术论文区域 (Publications Collection Block)
-  # 显示课题组发表的学术论文、预印本等研究成果
-  # --------------------------------------------------------------------------
-  - block: collection
-    content:
-      # 区块标题
-      title: '学术论文'
-      
-      # 额外说明文字 (留空)
-      text: ''
-      
-      # 显示数量: 显示最新的5篇论文
-      count: 5
-      
-      # 内容筛选条件
-      filters:
-        # 指定内容来源文件夹
-        folders:
-          - publication        # 从 content/publication/ 目录读取论文
-        # 出版物类型: article 表示学术论文
-        # 可选: preprint, article, book, thesis 等
-        publication_type: 'article'
-      
-      # 跳过的数量
-      offset: 0
-      
-      # 排序: 降序排列，最新的论文显示在最前面
-      order: desc
-    
-    # 设计样式配置
-    design:
-      # 显示视图: citation (引用格式)
-      # 以学术引用格式显示: 作者, 标题, 期刊, 年份等
-      view: citation
-      
-      # 列数: 单列布局
-      columns: '1'
-      
-      # 背景配置
-      background:
-        # 背景颜色: 白色 (#ffffff)
-        # 简洁清晰，便于阅读论文信息
-        color: '#ffffff'
+# ============================================================================
+# 本地化配置 (Localization)
+# 控制日期、时间、地址的显示格式
+# ============================================================================
+locale:
+  # 日期格式: 中国标准格式
+  # Go语言时间格式参考: 2006年1月2日
+  date_format: '2006年1月2日'
+  # 时间格式: 24小时制
+  # 可选: 15:04 (24小时), 3:04 PM (12小时)
+  time_format: '15:04'
+  # 地址格式: 使用 en-us 避免错误
+  # 注意: zh-cn 需要在 data/address_formats.toml 中定义
+  # 如需中文地址格式，请创建 data/address_formats.toml 文件
+  address_format: en-us
 
-  # --------------------------------------------------------------------------
-  # 区块5: 行动召唤按钮区域 (Call to Action Block)
-  # 引导用户点击按钮，跳转到团队成员页面
-  # --------------------------------------------------------------------------
-  - block: markdown
-    content:
-      # 标题留空 (不显示额外标题)
-      title: ''
-      
-      # 副标题留空
-      subtitle: ''
-      
-      # 使用短代码 (Shortcode) 创建按钮
-      # {{% cta %}} 是 Hugo 的短代码，用于创建行动召唤按钮
-      # cta_link: 按钮点击后跳转的链接地址
-      # cta_text: 按钮上显示的文字
-      text: '{{% cta cta_link="./people/" cta_text="了解我们的团队 →" %}}'
-    
-    # 设计样式配置
-    design:
-      # 列数: 单列布局
-      columns: '1'
-      
-      # 背景配置
-      background:
-        # 背景颜色: 亮蓝色 (#1a56db)
-        # 突出显示，吸引用户点击
-        color: '#1a56db'
-        # 文字使用亮色，确保在蓝色背景上清晰可见
-        text_color_light: true
-      
-      # 间距配置
-      spacing:
-        # 内边距: 上下各50px
-        # 使按钮区域有适当的留白
-        padding: ['50px', '0', '50px', '0']
+# ============================================================================
+# 站点功能配置 (Features)
+# 控制网站的各种功能特性
+# ============================================================================
+features:
+  # 代码语法高亮
+  syntax_highlighter:
+    # 是否启用
+    enable: false
+    # 额外的语言支持
+    extra_languages:
+      - r
+      - latex
+  
+  # 数学公式 (LaTeX)
+  math:
+    enable: false
+  
+  # 隐私包 (GDPR相关)
+  privacy_pack:
+    enable: false
+  
+  # Git 仓库配置
+  repository:
+    # 仓库地址
+    url: 'https://github.com/<username>/<repository>'
+    # 内容目录
+    content_dir: content
+    # 主分支名称
+    branch: main
+  
+  # 头像配置
+  avatar:
+    # 是否使用 Gravatar 全球头像
+    gravatar: false
+    # 头像形状: circle (圆形), square (方形)
+    shape: circle
+  
+  # 评论系统配置
+  comment:
+    # 评论系统提供商: disqus, commento, giscus, 留空表示禁用
+    provider: ''
+    # Disqus 配置
+    disqus:
+      shortname: ''
+      show_count: true
+    # Commento 配置
+    commento:
+      url: ''
+    # Giscus 配置 (GitHub Discussions)
+    giscus:
+      repo: ''
+      repo_id: ''
+      category: ''
+      category_id: ''
+  
+  # 搜索功能配置
+  search:
+    # 搜索提供商: wowchemy (内置), algolia (Algolia搜索)
+    provider: wowchemy
+    # Algolia 搜索配置
+    algolia:
+      app_id: ''
+      api_key: ''
+      index_name: ''
+      show_logo: false
+  
+  # 地图功能配置
+  map:
+    # 地图提供商: mapnik, google, mapbox
+    provider: 'mapnik'
+    # API 密钥
+    api_key: ''
+    # 默认缩放级别
+    zoom: 15
+
+# ============================================================================
+# 扩展功能 (Extensions)
+# 控制第三方扩展的启用
+# ============================================================================
+extensions:
+  # Decap CMS 配置 (原 Netlify CMS)
+  decap_cms:
+    # 分支名称
+    branch: main
+    # 是否使用本地后端
+    local_backend: false
+  # 学术图标库 (支持 Google Scholar, ORCID 等)
+  academicons:
+    enable: true
+
+# ============================================================================
+# 出版物配置 (Publications)
+# 控制学术出版物的显示格式
+# ============================================================================
+publications:
+  # 日期格式
+  date_format: January 2006
+  # 引用样式: apa, mla, chicago
+  citation_style: apa
