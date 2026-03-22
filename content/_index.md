@@ -36,7 +36,7 @@ sections:
       view: card
       columns: '1'
       background:
-        color: '#08172e'
+        color: '#15607a'
 
   - block: markdown
     content:
@@ -63,7 +63,7 @@ sections:
       view: citation
       columns: '1'
       background:
-        color: '#08172e'
+        color: '#ffffff'
 
   - block: markdown
     content:
