@@ -11,7 +11,7 @@ sections:
         先进集成电路材料与
         类脑芯片课题组
       image:
-        filename: brain-chip.jpg # 使用新生成的类脑芯片图片
+        filename: brain-chip.png # 使用新生成的类脑芯片图片
       text: |
         <br>
         
