@@ -1,15 +1,20 @@
----
 Leave the homepage title empty to use the site title
+
 title: ''
 date: 2022-10-24
 type: landing
+
 sections:
+
 block: hero
 content:
 title: '先进集成电路材料与类脑芯片课题组'
 image:
 filename: brain-chip.png
 text: '
+
+
+
 先进集成电路材料与类脑芯片课题组 (Advanced IC Materials & Neuromorphic Chips Lab) 致力于突破后摩尔时代的算力瓶颈，聚焦于新型半导体材料、忆阻器器件、以及具有高能效比的神经形态（类脑）计算架构的研究与应用。'
 design:
 background:
@@ -76,4 +81,3 @@ color: '#1a56db'
 text_color_light: true
 spacing:
 padding: ['50px', '0', '50px', '0']
----
