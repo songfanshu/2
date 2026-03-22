@@ -5,8 +5,8 @@ date: 2022-10-24
 type: landing
 
 sections:
-  - block: hero
-    content:
+  - block: hero # ✅ 正确：前面有两个空格，一个横线，一个空格
+    content:    # ✅ 正确：内容缩进需要和上面的 block 对齐（四个空格）
       title: |
         先进集成电路材料与
         类脑芯片课题组
