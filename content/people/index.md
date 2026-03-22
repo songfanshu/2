@@ -1,21 +1,26 @@
 ---
-title: 团队成员
-view: 2
-design:
-  columns: 3
-  show_interests: true
-  show_role: true
-  show_social: true
-  show_organizations: true
-  show_education: false
-  card:
-    show_avatar: true
-    avatar_shape: circle
+title: People
+date: 2022-10-24
+
+type: landing
+
+sections:
+  - block: people
+    content:
+      title: Meet the Team
+      # Choose which groups/teams of users to display.
+      #   Edit `user_groups` in each user's profile to add them to one or more of these groups.
+      user_groups:
+          - Principal Investigators
+          - Researchers
+          - Grad Students
+          - Administration
+          - Visitors
+          - Alumni
+      sort_by: Params.last_name
+      sort_ascending: true
+    design:
+      show_interests: false
+      show_role: true
+      show_social: true
 ---
-
-# 我们的团队
-
-我们是一支充满活力的研究团队，致力于前沿科学研究。
-欢迎了解我们的团队成员！
-
-如果您对我们的研究方向感兴趣，欢迎联系我们！
