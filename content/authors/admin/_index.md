@@ -23,8 +23,7 @@ interests:
   - 先进集成电路材料 (Advanced IC Materials) 
   - 神经形态计算 (Neuromorphic Computing)
   - 忆阻器与新型存储器件 (Memristors & Emerging Memory)
----
-刘钢教授是先进集成电路材料与类脑芯片课题组的负责人...（填入具体的中文介绍）
+
 education:
   courses:
     - course: PhD in Artificial Intelligence
@@ -71,7 +70,7 @@ highlight_name: false
 user_groups:
   - Researchers
 ---
-
+刘钢教授是先进集成电路材料与类脑芯片课题组的负责人...（填入具体的中文介绍）
 Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
