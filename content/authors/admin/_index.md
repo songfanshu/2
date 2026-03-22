@@ -19,7 +19,7 @@ organizations:
 
 # Short bio (displayed in user profile at end of posts)
 bio: 主要研究方向包括新型微电子材料、非易失性存储器（忆阻器）以及类脑计算芯片设计。
-research direction:
+interests:
   - 先进集成电路材料 (Advanced IC Materials) 
   - 神经形态计算 (Neuromorphic Computing)
   - 忆阻器与新型存储器件 (Memristors & Emerging Memory)
