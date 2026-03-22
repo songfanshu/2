@@ -55,9 +55,9 @@ footer:
 # Localization
 
 locale:
-  date_format: '2006年1月2日'    # 中国日期格式
-  time_format: '15:04'           # 24小时制时间格式
-  address_format: zh-cn          # 中国地址格式
+  date_format: '2006年1月2日'
+  time_format: '15:04'
+  address_format: en-us   # 确保这里是 en-us，不是 zh-cn
 
 # Site features
 
