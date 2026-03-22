@@ -20,8 +20,8 @@ sections:
       background:
         color: '#08172e' # 深蓝背景
         text_color_light: true
-  - block: collection
-    content:
+  - block: collection # ✅ 正确：前面有两个空格，一个横线，一个空格
+    content:    # ✅ 正确：内容缩进需要和上面的 block 对齐（四个空格）
       title: Latest News
       subtitle:
       text:
@@ -40,8 +40,8 @@ sections:
       columns: '1'
   background:
         color: '#ffffff' # 纯白背景
-  - block: markdown
-    content:
+   - block: markdown # ✅ 正确：前面有两个空格，一个横线，一个空格
+    content:    # ✅ 正确：内容缩进需要和上面的 block 对齐（四个空格）
       title:
       subtitle: ''
       text:
@@ -52,8 +52,8 @@ sections:
       spacing:
         padding: ['80px', '0', '80px', '0']
 
-  - block: collection
-    content:
+  - block: collection # ✅ 正确：前面有两个空格，一个横线，一个空格
+    content:    # ✅ 正确：内容缩进需要和上面的 block 对齐（四个空格）
       title: Latest Preprints
       text: ""
       count: 5
@@ -66,8 +66,8 @@ sections:
       columns: '1'
       background:
         color: '#ffffff' # 纯白背景
-  - block: markdown
-    content:
+   - block: markdown # ✅ 正确：前面有两个空格，一个横线，一个空格
+    content:    # ✅ 正确：内容缩进需要和上面的 block 对齐（四个空格）
       title:
       subtitle:
       text: |
