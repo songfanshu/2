@@ -1,5 +1,5 @@
 ---
-title: "分子硬盘实现海量数据原位加密，功耗低至皮瓦级"
+title: "Molecular HDD logic for encrypted massive data storage"
 date: 2025-02-27
 summary: "通过设计Ru³LPH分子自组装单层，实现了96态存储、pW/bit功耗及单单元XOR加密，为超高密度、高安全性数据存储提供新路径。"
 featured: true
@@ -20,7 +20,7 @@ publication_short: "Nat. Commun."
 # 封面图（放在 assets/media/ 下）
 image:
   filename: molecular-hdd-cover_enhanced.jpg
-  caption: "分子硬盘结构与电学特性示意图"
+  caption: ""
 
 # 作者列表
 authors:
