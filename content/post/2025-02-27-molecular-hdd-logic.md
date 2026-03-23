@@ -19,7 +19,7 @@ publication_short: "Nat. Commun."
 
 # 封面图（放在 assets/media/ 下）
 image:
-  filename: molecular-hdd-cover.webp
+  filename: molecular-hdd-cover_enhanced.jpg
   caption: "分子硬盘结构与电学特性示意图"
 
 # 作者列表
@@ -94,4 +94,4 @@ https://doi.org/10.1038/s41467-025-57410-8
 
 ---
 
-*“关注点赞，在看分享，都是支持”*
+
