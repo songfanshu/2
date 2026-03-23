@@ -52,6 +52,9 @@ footer:
       share_alike: true
       allow_commercial: false
 
+# Social links (disable all) – 删除 YouTube、Facebook 等图标
+social: []
+
 # Localization
 
 locale:
@@ -110,7 +113,7 @@ extensions:
     local_backend: false
   academicons:
     enable: true
-  hugo_blox_builder:    # 新增：关闭页脚 Powered by 提示
+  hugo_blox_builder:    # 关闭页脚 Powered by 提示
     powered_by: false
 
 # Citation style
