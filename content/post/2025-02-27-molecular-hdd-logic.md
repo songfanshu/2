@@ -10,7 +10,7 @@ publication: "Nature Communications"
 doi: "10.1038/s41467-025-57410-8"
 url_pdf: "https://www.nature.com/articles/s41467-025-57410-8.pdf"
 image:
-  filename: molecular-hdd-fig1.webp
+  filename: molecular-hdd-fig1.png
   caption: "分子硬盘结构与电学特性示意图"
 authors:
   - Bingjie Guo
