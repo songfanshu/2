@@ -1,10 +1,6 @@
 ---
-title: Latest News
-
-# Listing view
-view: compact
-
-# Optional banner image (relative to `assets/media/` folder).
+title: "课题组新闻"
+view: card
 banner:
   caption: ''
   image: ''
