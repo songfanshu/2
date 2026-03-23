@@ -110,6 +110,8 @@ extensions:
     local_backend: false
   academicons:
     enable: true
+  hugo_blox_builder:    # 新增：关闭页脚 Powered by 提示
+    powered_by: false
 
 # Citation style
 
