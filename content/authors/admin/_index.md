@@ -41,7 +41,9 @@ education:
     - course: Research Fellow
       institution: 加坡国立大学，化学与生物分子工程系
       year: 2010-2012
-
+    - course: 副研究员
+      institution: 中国科学院，宁波材料技术与工程研究所
+      year: 2012-2014
 
 
 # Social/Academic Networking
