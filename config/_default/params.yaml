@@ -45,7 +45,7 @@ header:
 
 footer:
   copyright:
-    notice: '© {year} Me. This work is licensed under {license}'
+    notice: '© {year} 先进集成电路材料与类脑芯片课题组'
     license:
       enable: true
       allow_derivatives: false
