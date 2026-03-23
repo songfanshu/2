@@ -73,7 +73,7 @@ authors:
 
 ---
 
-### 图片展示
+### 图文导读
 
 {{< figure src="fig1.webp" title="图1 | 分子硬盘设计策略与电学特性" caption="(a) 传统磁性硬盘与分子硬盘概念对比；(b) Ru³LPH分子结构；(c) 96态线性电导演化；(d) pW/bit级功耗特性。" width="100%" quality="100" >}}
 
