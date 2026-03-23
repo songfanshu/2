@@ -16,12 +16,13 @@ draft: false
 publication: "Nature Communications"
 publication_short: "Nat. Commun."
 
-# 封面图（建议放在 static/images/ 避免压缩）
+
+# 封面图（放在 assets/media/ 下）
 image:
-  filename: /images/molecular-hdd-cover.jpg
+  filename: molecular-hdd-cover.webp
   caption: "分子硬盘结构与电学特性示意图"
 
-# 作者列表（按原文顺序）
+# 作者列表
 authors:
   - Bingjie Guo
   - Xinhui Chen
@@ -74,15 +75,15 @@ authors:
 
 ### 图片展示
 
-{{< figure src="/images/fig1.jpg" title="图1 | 分子硬盘设计策略与电学特性" caption="(a) 传统磁性硬盘与分子硬盘概念对比；(b) Ru³LPH分子结构；(c) 96态线性电导演化；(d) pW/bit级功耗特性。" width="100%" >}}
+{{< figure src="fig1.webp" title="图1 | 分子硬盘设计策略与电学特性" caption="(a) 传统磁性硬盘与分子硬盘概念对比；(b) Ru³LPH分子结构；(c) 96态线性电导演化；(d) pW/bit级功耗特性。" width="100%" quality="100" >}}
 
-{{< figure src="/images/fig2.jpg" title="图2 | 电导调制机理" caption="(a)(b) XPS谱图证实钌离子价态变化；(c) DFT模拟的分子轨道能级；(d) PFM相位演化揭示氯离子漂移；(e) 协同机理示意图。" width="100%" >}}
+{{< figure src="fig2.webp" title="图2 | 电导调制机理" caption="(a)(b) XPS谱图证实钌离子价态变化；(c) DFT模拟的分子轨道能级；(d) PFM相位演化揭示氯离子漂移；(e) 协同机理示意图。" width="100%" quality="100" >}}
 
-{{< figure src="/images/fig3.jpg" title="图3 | 多级存储性能" caption="(a-d) 不同扫描电压下的I-V曲线；(e) 96态线性调制；(f-g) 均匀性统计；(h) 保持特性。" width="100%" >}}
+{{< figure src="fig3.webp" title="图3 | 多级存储性能" caption="(a-d) 不同扫描电压下的I-V曲线；(e) 96态线性调制；(f-g) 均匀性统计；(h) 保持特性。" width="100%" quality="100" >}}
 
-{{< figure src="/images/fig4.jpg" title="图4 | 单单元XOR逻辑实现" caption="(a) XOR真值表；(b) 传统双单元实现方案；(c) 单单元一步方案；(d) 原理示意图；(e) 模拟结果。" width="100%" >}}
+{{< figure src="fig4.webp" title="图4 | 单单元XOR逻辑实现" caption="(a) XOR真值表；(b) 传统双单元实现方案；(c) 单单元一步方案；(d) 原理示意图；(e) 模拟结果。" width="100%" quality="100" >}}
 
-{{< figure src="/images/fig5.jpg" title="图5 | 莫高窟壁画图像原位加密" caption="(a) 壁画图像及RGB分解；(b) 加密流程图；(c) 像素加密过程模拟；(d) 加密前后图像对比。" width="100%" >}}
+{{< figure src="fig5.webp" title="图5 | 莫高窟壁画图像原位加密" caption="(a) 壁画图像及RGB分解；(b) 加密流程图；(c) 像素加密过程模拟；(d) 加密前后图像对比。" width="100%" quality="100" >}}
 
 ---
 
