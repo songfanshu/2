@@ -13,7 +13,7 @@ sections:
       user_groups:
           - Professor
           - Associate Professor
-          - Doctor
+          - Doctors
           - Master's degree
       sort_by: Params.last_name
       sort_ascending: true
