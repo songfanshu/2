@@ -15,6 +15,7 @@ sections:
           - Associate Professor
           - Doctors
           - Master's degree
+          - Graduate
       sort_by: Params.last_name
       sort_ascending: true
     design:
