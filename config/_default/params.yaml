@@ -101,10 +101,9 @@ features:
       index_name: ''
       show_logo: false
   map:
-    provider: 'mapnik'
-    api_key: ''
-    zoom: 15
-
+    engine: 2  # 'engine: 2' 代表 OpenStreetMap
+    api_key: ""
+    zoom: 15  # 可调整地图的默认缩放级别
 # Extensions
 
 extensions:
