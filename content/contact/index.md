@@ -1,6 +1,6 @@
 ---
 title: Contact
-date: 2022-10-24
+date: 2026-04-01
 
 type: landing
 
@@ -24,8 +24,7 @@ sections:
         longitude: '-122.1697'
       directions: Enter Building 1 and take the stairs to Office 200 on Floor 2
       office_hours:
-        - 'Monday 10:00 to 13:00'
-        - 'Wednesday 09:00 to 10:00'
+        - 'Monday-Friday 09:00 to 11:30 '
       appointment_url: 'https://calendly.com'
       #contact_links:
       #  - icon: comments
