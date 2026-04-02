@@ -2,16 +2,16 @@ main:
   - name: 首页
     url: '/'
     weight: 10
-  - name: 课题组新闻
+  - name: 课题组动态
     url: '/post/'
     weight: 20
   - name: 团队成员
     url: '/people/'
     weight: 30
-  - name: 学术会议
+  - name: 团队建设
     url: '/event/'
     weight: 40
-  - name: 发表论文
+  - name: 研究成果
     url: '/publication/'
     weight: 50
   - name: 联系我们
