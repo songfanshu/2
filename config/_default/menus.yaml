@@ -11,9 +11,12 @@ main:
   - name: 团队建设
     url: '/event/'
     weight: 40
+  - name: 实验室建设
+    url: '/event/'
+    weight: 50
   - name: 研究成果
     url: '/publication/'
-    weight: 50
+    weight: 60
   - name: 联系我们
     url: '/contact/'
-    weight: 60
+    weight: 70
