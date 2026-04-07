@@ -105,3 +105,47 @@ footer .powered-by {
     font-size: 1.5rem;
   }
 }
+// 横向滚动全屏效果
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.page-wrapper, .main-container, .container-fluid {
+  display: block !important;
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+}
+
+.home-section {
+  display: inline-block;
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  overflow-y: auto;
+  vertical-align: top;
+  position: relative;
+}
+
+// 固定导航栏（根据您的主题类名调整）
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+}
+
+// 补偿导航栏高度
+.home-section:first-of-type {
+  padding-top: 70px;
+}
