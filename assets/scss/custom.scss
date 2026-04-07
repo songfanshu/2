@@ -15,6 +15,24 @@ body {
 .hero-body .hero-lead {
   font-size: 1.1rem;
 }
+// 让第一个 hero 区块占满整个视口高度
+.home-section:first-of-type.wg-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;     // 垂直居中内容
+  justify-content: center;
+  
+  // 确保内容区域不会溢出或出现滚动条
+  .hero-body {
+    padding: 2rem;
+    width: 100%;
+  }
+}
+
+// 可选：如果希望背景覆盖整个视口，避免底部出现白色缝隙
+html, body {
+  height: 100%;
+}
 
 // ========== Markdown 块（课题组愿景、CTA 区域） ==========
 .markdown-block,
