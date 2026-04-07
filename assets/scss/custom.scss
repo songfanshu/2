@@ -111,3 +111,49 @@ footer .powered-by {
 .home-section:first-of-type {
   padding-top: 70px;
 }
+// 锁定视口，水平滚动
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;   // 滚动吸附（可选，让每个模块对齐）
+  scroll-behavior: smooth;          // 平滑滚动
+}
+
+// 让所有 .home-section 横向排列，每个占满视口宽度
+.home-section {
+  display: inline-block;
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  overflow-y: auto;                 // 内部内容过多可垂直滚动
+  vertical-align: top;
+}
+
+// 如果父容器影响了横向布局，强制重置
+.page-wrapper, .main-container, .container-fluid {
+  display: block !important;
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+}
+
+// 可选：固定导航栏（避免随横向滚动）
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+}
+
+// 补偿导航栏高度
+.home-section:first-of-type {
+  padding-top: 70px;
+  box-sizing: border-box;
+}
