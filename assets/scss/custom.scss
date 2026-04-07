@@ -50,6 +50,30 @@ html, body {
   backdrop-filter: blur(10px);
   pointer-events: auto;
 }
+// 导航栏链接字体颜色（深色背景用白色）
+.navbar-nav .nav-link {
+  color: #ffffff !important;        // 正常状态白色
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  opacity: 1;                       // 悬停时完全不透明
+  color: #ffffff !important;
+}
+
+// 当前激活的导航项（如果有高亮）
+.navbar-nav .nav-link.active {
+  opacity: 1;
+  font-weight: 500;
+  border-bottom: 2px solid #ffffff; // 可选下划线
+}
+
+// 移动端折叠菜单内的链接颜色（如果菜单展开背景也是深色）
+.navbar-collapse .navbar-nav .nav-link {
+  color: #ffffff !important;
+}
 
 // 补偿导航栏高度，防止第一个区块内容被遮挡
 .home-section:first-of-type {
