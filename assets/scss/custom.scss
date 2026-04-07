@@ -1,0 +1,78 @@
+// ========== 全局字体基础大小 ==========
+body {
+  font-size: 1.05rem;     // 默认 1rem=16px，调大到约 16.8px
+  line-height: 1.6;       // 增加行高，提升可读性
+}
+
+// ========== Hero 块（课题组简介区域） ==========
+// Hero 块的主标题（如果 title 为空则不显示，但可能还有副标题或文本）
+.hero-body .hero-text {
+  font-size: 1.25rem;     // 简介文本字体调大
+  font-weight: 500;
+}
+
+// 如果 Hero 块中有图片描述文字，也可以单独调整
+.hero-body .hero-lead {
+  font-size: 1.1rem;
+}
+
+// ========== Markdown 块（课题组愿景、CTA 区域） ==========
+.markdown-block,
+.wg-markdown {
+  p, li {
+    font-size: 1.05rem;
+  }
+}
+
+// “课题组愿景” 的标题（H2）
+.section-heading h2 {
+  font-size: 1.8rem;
+}
+
+// CTA 按钮文字大小
+.cta-group .btn {
+  font-size: 1rem;
+}
+
+// ========== Collection 块（最新动态、学术论文） ==========
+// 文章/论文卡片的标题
+.collection .article-title {
+  font-size: 1.2rem;
+}
+
+// 卡片的摘要或描述文字
+.collection .article-summary {
+  font-size: 0.95rem;
+}
+
+// 论文引用样式（citation view）
+.publication-item .publication-title {
+  font-size: 1.1rem;
+}
+.publication-item .publication-authors,
+.publication-item .publication-date {
+  font-size: 0.85rem;
+}
+
+// ========== 导航栏（可选） ==========
+.navbar-nav .nav-link {
+  font-size: 0.95rem;
+}
+
+// ========== 页脚（可选） ==========
+footer .powered-by {
+  font-size: 0.8rem;
+}
+
+// ========== 移动端适配（避免过大） ==========
+@media (max-width: 768px) {
+  body {
+    font-size: 0.95rem;
+  }
+  .hero-body .hero-text {
+    font-size: 1rem;
+  }
+  .section-heading h2 {
+    font-size: 1.5rem;
+  }
+}
