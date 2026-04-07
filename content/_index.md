@@ -36,7 +36,7 @@ sections:
       view: card
       columns: '1'
       background:
-        color: '#15607a'
+        color: '#ffffff'
 
   - block: markdown
     content:
