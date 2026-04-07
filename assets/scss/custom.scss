@@ -105,3 +105,21 @@ footer .powered-by {
     font-size: 1.5rem;
   }
 }
+// 确保 html 和 body 占满全屏，并实现平滑滚动
+html {
+  scroll-behavior: smooth; /* 实现平滑滚动效果[reference:2] */
+}
+
+// 1. 创建一个滚动容器
+.scroll-container {
+  height: 100vh;          // 固定高度为视口高度
+  overflow-y: scroll;     // 启用垂直滚动
+  scroll-snap-type: y mandatory; // 开启垂直方向的强制滚动捕捉[reference:3]
+}
+
+// 2. 将每个 .home-section 定义为滚动捕捉点
+.home-section {
+  height: 100vh;          // 每个区块占满一屏
+  scroll-snap-align: start; // 滚动停止时，区块的顶部对齐[reference:4]
+  overflow-y: auto;       // 如果某个区块内容过多，允许其内部滚动
+}
