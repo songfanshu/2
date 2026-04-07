@@ -153,3 +153,41 @@ footer .powered-by {
     padding-top: 60px;
   }
 }
+// ========== 6. 区块内容垂直居中 ==========
+// Hero 区块
+.home-section.wg-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  .hero-body {
+    width: 100%;
+    padding: 2rem;
+  }
+}
+
+// Markdown 区块
+.home-section.wg-markdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  .container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+// Collection 区块（可选，使标题和内容整体居中）
+.home-section.wg-collection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  .container {
+    width: 100%;
+  }
+}
