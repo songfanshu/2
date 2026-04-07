@@ -41,7 +41,18 @@ html, body {
     font-size: 1.05rem;
   }
 }
+// 第二个区块（最新动态）铺满全屏
+.home-section:nth-of-type(2) {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  // 垂直居中
+}
 
+// 确保内部容器也参与 flex 布局
+.home-section:nth-of-type(2) .container {
+  width: 100%;
+}
 // “课题组愿景” 的标题（H2）
 .section-heading h2 {
   font-size: 1.8rem;
