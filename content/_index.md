@@ -7,7 +7,7 @@ type: landing
 sections:
   - block: hero
     content:
-      title: '先进集成电路材料与类脑芯片课题组'
+      title: ''
       image:
         filename: brain-chip.png
       text: |
