@@ -1,4 +1,4 @@
-// 自动水平滚动功能 + 圆点指示器
+// 自动水平滚动功能 + 圆点指示器（优化版）
 (function() {
     const intervalTime = 5000;      // 自动滚动间隔（毫秒），5秒
     const pauseAfterManual = 10000; // 手动滚动后暂停自动滚动的时间（毫秒），10秒
@@ -11,7 +11,7 @@
     let dotsContainer = null;
     let dots = [];
 
-    // 获取滚动容器（body 本身就是滚动容器，因为设置了 overflow-x: auto）
+    // 获取滚动容器（body 或 html）
     function getScrollContainer() {
         return document.scrollingElement || document.documentElement;
     }
@@ -21,76 +21,15 @@
         return Array.from(document.querySelectorAll('.home-section'));
     }
 
-    // 创建圆点指示器
-    function createDots() {
-        if (dotsContainer) return;
-        dotsContainer = document.createElement('div');
-        dotsContainer.className = 'scroll-dots';
-        dotsContainer.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            z-index: 1050;
-            pointer-events: none;
-        `;
-        // 为了让圆点可点击，每个圆点需要独立的事件层
-        sections.forEach((_, idx) => {
-            const dot = document.createElement('button');
-            dot.className = 'scroll-dot';
-            dot.setAttribute('data-index', idx);
-            dot.style.cssText = `
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background-color: rgba(255, 255, 255, 0.5);
-                border: none;
-                cursor: pointer;
-                pointer-events: auto;
-                transition: all 0.2s ease;
-                padding: 0;
-                margin: 0;
-            `;
-            dot.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const index = parseInt(dot.getAttribute('data-index'));
-                if (!isNaN(index)) {
-                    // 点击时暂停自动滚动
-                    if (isAutoScrolling) pauseAutoScroll();
-                    scrollToIndex(index);
-                }
-            });
-            dotsContainer.appendChild(dot);
-            dots.push(dot);
-        });
-        document.body.appendChild(dotsContainer);
-        updateActiveDot(currentIndex);
-    }
-
-    // 更新激活圆点
-    function updateActiveDot(index) {
-        dots.forEach((dot, i) => {
-            if (i === index) {
-                dot.style.backgroundColor = '#ffffff';
-                dot.style.transform = 'scale(1.3)';
-            } else {
-                dot.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
-                dot.style.transform = 'scale(1)';
-            }
-        });
-    }
-
-    // 滚动到指定索引的区块
+    // 滚动到指定索引的区块（使用 scrollTo 避免与 scroll-snap 冲突）
     function scrollToIndex(index) {
         if (!sections.length) return;
-        if (index < 0) index = 0;
-        if (index >= sections.length) index = 0;
+        index = Math.max(0, Math.min(index, sections.length - 1));
         const target = sections[index];
         if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+            const container = getScrollContainer();
+            const targetLeft = target.offsetLeft;
+            container.scrollTo({ left: targetLeft, behavior: 'smooth' });
             currentIndex = index;
             updateActiveDot(currentIndex);
         }
@@ -115,7 +54,7 @@
         }, intervalTime);
     }
 
-    // 停止自动滚动（临时）
+    // 暂停自动滚动（临时）
     function pauseAutoScroll() {
         if (!isAutoScrolling) return;
         isAutoScrolling = false;
@@ -125,7 +64,27 @@
         }, pauseAfterManual);
     }
 
-    // 监听手动滚动（滚动结束后恢复）
+    // 根据滚动位置更新 currentIndex 和圆点（优化版，避免 getBoundingClientRect）
+    function updateCurrentIndexFromScroll() {
+        const container = getScrollContainer();
+        const scrollLeft = container.scrollLeft;
+        let newIndex = 0;
+        // 遍历区块，找到最接近滚动位置的那个
+        for (let i = 0; i < sections.length; i++) {
+            const left = sections[i].offsetLeft;
+            if (scrollLeft >= left - 50) { // 阈值50px，允许轻微偏差
+                newIndex = i;
+            } else {
+                break;
+            }
+        }
+        if (newIndex !== currentIndex) {
+            currentIndex = newIndex;
+            updateActiveDot(currentIndex);
+        }
+    }
+
+    // 监听手动滚动（滚动结束后更新索引并暂停自动滚动）
     let scrollTimeout = null;
     function onManualScroll() {
         if (scrollTimeout) clearTimeout(scrollTimeout);
@@ -133,60 +92,103 @@
         if (isAutoScrolling) {
             pauseAutoScroll();
         }
-        // 更新当前索引（根据滚动位置）
+        // 延迟更新索引，避免高频计算
         scrollTimeout = setTimeout(() => {
             updateCurrentIndexFromScroll();
         }, 150);
     }
 
-    // 根据滚动位置更新 currentIndex 和圆点
-    function updateCurrentIndexFromScroll() {
-        const container = getScrollContainer();
-        const scrollLeft = container.scrollLeft;
-        let newIndex = 0;
-        let minOffset = Infinity;
-        sections.forEach((section, idx) => {
-            const rect = section.getBoundingClientRect();
-            const offset = Math.abs(rect.left);
-            if (offset < minOffset) {
-                minOffset = offset;
-                newIndex = idx;
+    // 创建圆点指示器
+    function createDots() {
+        if (dotsContainer) return;
+        dotsContainer = document.createElement('div');
+        dotsContainer.className = 'scroll-dots';
+        dotsContainer.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 1050;
+            pointer-events: none;
+        `;
+        sections.forEach((_, idx) => {
+            const dot = document.createElement('button');
+            dot.className = 'scroll-dot';
+            dot.setAttribute('data-index', idx);
+            dot.style.cssText = `
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.5);
+                border: none;
+                cursor: pointer;
+                pointer-events: auto;
+                transition: all 0.2s ease;
+                padding: 0;
+                margin: 0;
+            `;
+            dot.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const index = parseInt(dot.getAttribute('data-index'));
+                if (!isNaN(index)) {
+                    if (isAutoScrolling) pauseAutoScroll();
+                    scrollToIndex(index);
+                }
+            });
+            dotsContainer.appendChild(dot);
+            dots.push(dot);
+        });
+        document.body.appendChild(dotsContainer);
+        updateActiveDot(currentIndex);
+    }
+
+    // 更新激活圆点
+    function updateActiveDot(index) {
+        dots.forEach((dot, i) => {
+            if (i === index) {
+                dot.style.backgroundColor = '#ffffff';
+                dot.style.transform = 'scale(1.3)';
+            } else {
+                dot.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+                dot.style.transform = 'scale(1)';
             }
         });
-        if (newIndex !== currentIndex) {
-            currentIndex = newIndex;
-            updateActiveDot(currentIndex);
-        }
+    }
+
+    // 重建圆点（当窗口大小改变或区块数量变化时）
+    function rebuildDots() {
+        if (dotsContainer) dotsContainer.remove();
+        dots = [];
+        createDots();
     }
 
     // 初始化
     function init() {
         sections = getSections();
-        if (sections.length <= 1) return; // 只有一个模块时不需要圆点
+        if (sections.length <= 1) return;
 
-        // 创建圆点指示器
+        // 创建圆点
         createDots();
 
-        // 确保每个模块宽度正确（响应视口变化）
+        // 监听窗口大小变化，重新计算区块位置并重建圆点
         window.addEventListener('resize', () => {
             sections = getSections();
-            // 重建圆点（数量可能变化）
-            if (dotsContainer) dotsContainer.remove();
-            dots = [];
-            createDots();
+            rebuildDots();
             updateCurrentIndexFromScroll();
         });
 
         // 监听滚动事件（手动滚动）
         const container = getScrollContainer();
         container.addEventListener('scroll', onManualScroll);
-        container.addEventListener('touchmove', onManualScroll);
-        container.addEventListener('wheel', onManualScroll);
+        // 移动端触摸滚动同样触发 scroll 事件，无需额外监听 touchmove/wheel
 
         // 启动自动滚动
         startAutoScroll();
 
-        // 初始定位到第一个模块
+        // 初始定位到第一个区块
         setTimeout(() => {
             scrollToIndex(0);
         }, 100);
