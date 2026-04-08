@@ -2,6 +2,7 @@
 body {
   font-size: 1.05rem;
   line-height: 1.6;
+  background-color: #08172e; // 与 Hero 背景色一致，避免缝隙
 }
 
 // ========== 2. 横向滚动核心布局 ==========
@@ -14,11 +15,14 @@ html, body {
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  scroll-padding-top: 70px;   // 避免固定导航栏遮挡内容（作用于滚动定位）
+  scroll-padding-top: 70px;   // 避免固定导航栏遮挡滚动定位
 }
 
 .home-section {
-  display: inline-block;
+  display: inline-flex;        // 保持横向排列 + 内部 Flex 居中
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   height: 100vh;
   scroll-snap-align: start;
@@ -28,6 +32,7 @@ html, body {
   box-sizing: border-box;
 }
 
+// 重置父容器，确保横向排列
 .page-wrapper,
 .main-container,
 .container-fluid {
@@ -69,40 +74,48 @@ html, body {
   color: #ffffff !important;
 }
 
-// 移除之前对第一个区块的 padding-top（改用 scroll-padding-top）
-// .home-section:first-of-type { padding-top: 70px; }  // 删除这行
-
-// ========== 4. 区块内容垂直居中（统一方法） ==========
-// 核心思路：让每个区块的内部主容器使用 Flex 居中，且高度与父容器一致
-.home-section {
-  display: inline-flex;          // 改为 inline-flex，保持横向排列同时内部可 flex
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-// 针对不同区块的具体内容容器，确保它们不破坏居中
+// ========== 4. 区块内容垂直居中（统一且可靠） ==========
+// 所有区块的主容器限制最大宽度并居中
 .home-section .container,
 .home-section .hero-body,
 .home-section .markdown-block {
   width: 100%;
-  max-width: 1200px;            // 限制内容最大宽度，避免过宽
+  max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
   box-sizing: border-box;
 }
 
-// 特别处理：确保 collection 区块的列表容器不溢出
+// Hero 区块额外确保内容完全居中（无偏移）
+.home-section.wg-hero {
+  .hero-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: auto; // 避免强制高度导致溢出
+    padding: 2rem;
+  }
+  // 图片自适应
+  .hero-image {
+    max-width: 80%;
+    height: auto;
+    margin: 0 auto 1.5rem;
+  }
+}
+
+// Collection 区块限制稍窄宽度，保持可读性
 .home-section.wg-collection .container {
   max-width: 1000px;
 }
 
-// 调整标题与卡片间距，让视觉上更平衡
+// 调整标题与卡片间距
 .section-heading {
   margin-bottom: 2rem;
 }
 
-// ========== 5. 其他样式（字体、颜色等保留） ==========
+// ========== 5. 其他样式（字体、颜色等） ==========
 .hero-body .hero-text {
   font-size: 1.25rem;
   font-weight: 500;
