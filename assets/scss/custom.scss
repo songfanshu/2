@@ -19,16 +19,20 @@ html, body {
   scroll-padding-top: 70px;
 }
 
+/* 关键修复：使用 inline-flex 保持横向排列，同时内部支持 flex 居中 */
 .home-section {
-  display: inline-block;      /* 关键：保持横向排列，不破坏内部布局 */
+  display: inline-flex;          /* 替代 inline-block + 独立 flex */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   height: 100vh;
   scroll-snap-align: start;
   overflow-y: auto;
   vertical-align: top;
-  white-space: normal;        /* 确保内部文字换行 */
+  white-space: normal;
   box-sizing: border-box;
-  background-color: #08172e;  /* 统一背景色 */
+  background-color: #08172e;
 }
 
 /* 重置父容器，确保横向排列 */
@@ -83,14 +87,6 @@ html, body {
   padding: 1.5rem;
   box-sizing: border-box;
   color: #f0f0f0;
-}
-
-/* 让区块内容在垂直方向居中（使用 flex，但不破坏横向排列） */
-.home-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 /* Hero 区块内部调整 */
@@ -204,7 +200,6 @@ footer .powered-by {
   transform: scale(1.2);
 }
 
-/* 激活圆点样式（由 JS 动态添加类） */
 .scroll-dot.active {
   background-color: #ffffff !important;
   transform: scale(1.3);
