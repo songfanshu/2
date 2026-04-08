@@ -19,12 +19,9 @@ html, body {
   scroll-padding-top: 70px;
 }
 
-/* 关键修复：使用 inline-flex 保持横向排列，同时内部支持 flex 居中 */
+/* 每个区块占满一屏，横向排列 */
 .home-section {
-  display: inline-flex;          /* 替代 inline-block + 独立 flex */
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;   /* 关键：保持横向排列 */
   width: 100vw;
   height: 100vh;
   scroll-snap-align: start;
@@ -89,13 +86,22 @@ html, body {
   color: #f0f0f0;
 }
 
+/* 可选：让区块内容在垂直方向居中（但不破坏布局） */
+.home-section {
+  text-align: center;  /* 仅水平居中文本，不改变块级行为 */
+}
+/* 针对 collection 区块，内容左对齐更自然 */
+.home-section.wg-collection {
+  text-align: left;
+}
+
 /* Hero 区块内部调整 */
 .home-section.wg-hero .hero-body {
-  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .hero-image {
@@ -104,7 +110,7 @@ html, body {
   margin-bottom: 1.5rem;
 }
 
-/* Collection 区块（新闻、论文）卡片样式 */
+/* Collection 区块卡片样式 */
 .card, .publication-item {
   background-color: rgba(255, 255, 255, 0.1) !important;
   color: #fff;
@@ -112,7 +118,6 @@ html, body {
   margin-bottom: 1rem;
 }
 
-/* 文章标题、链接颜色 */
 .collection .article-title a,
 .publication-title a {
   color: #9ec8e0;
@@ -122,7 +127,6 @@ html, body {
   color: #c0e0f0;
 }
 
-/* 调整标题与卡片间距 */
 .section-heading {
   margin-bottom: 2rem;
   color: #ffffff;
@@ -192,7 +196,6 @@ footer .powered-by {
   transition: all 0.2s ease;
   padding: 0 !important;
   margin: 0 !important;
-  box-shadow: none;
 }
 
 .scroll-dot:hover {
