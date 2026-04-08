@@ -1,6 +1,5 @@
-// 自动水平滚动功能
+// 自动水平滚动功能 + 圆点指示器
 (function() {
-    // 配置参数
     const intervalTime = 5000;      // 自动滚动间隔（毫秒），5秒
     const pauseAfterManual = 10000; // 手动滚动后暂停自动滚动的时间（毫秒），10秒
 
@@ -8,8 +7,9 @@
     let autoScrollTimer = null;
     let pauseTimer = null;
     let isAutoScrolling = true;
-    let scrollContainer = null;
     let sections = [];
+    let dotsContainer = null;
+    let dots = [];
 
     // 获取滚动容器（body 本身就是滚动容器，因为设置了 overflow-x: auto）
     function getScrollContainer() {
@@ -21,6 +21,68 @@
         return Array.from(document.querySelectorAll('.home-section'));
     }
 
+    // 创建圆点指示器
+    function createDots() {
+        if (dotsContainer) return;
+        dotsContainer = document.createElement('div');
+        dotsContainer.className = 'scroll-dots';
+        dotsContainer.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 1050;
+            pointer-events: none;
+        `;
+        // 为了让圆点可点击，每个圆点需要独立的事件层
+        sections.forEach((_, idx) => {
+            const dot = document.createElement('button');
+            dot.className = 'scroll-dot';
+            dot.setAttribute('data-index', idx);
+            dot.style.cssText = `
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.5);
+                border: none;
+                cursor: pointer;
+                pointer-events: auto;
+                transition: all 0.2s ease;
+                padding: 0;
+                margin: 0;
+            `;
+            dot.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const index = parseInt(dot.getAttribute('data-index'));
+                if (!isNaN(index)) {
+                    // 点击时暂停自动滚动
+                    if (isAutoScrolling) pauseAutoScroll();
+                    scrollToIndex(index);
+                }
+            });
+            dotsContainer.appendChild(dot);
+            dots.push(dot);
+        });
+        document.body.appendChild(dotsContainer);
+        updateActiveDot(currentIndex);
+    }
+
+    // 更新激活圆点
+    function updateActiveDot(index) {
+        dots.forEach((dot, i) => {
+            if (i === index) {
+                dot.style.backgroundColor = '#ffffff';
+                dot.style.transform = 'scale(1.3)';
+            } else {
+                dot.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+                dot.style.transform = 'scale(1)';
+            }
+        });
+    }
+
     // 滚动到指定索引的区块
     function scrollToIndex(index) {
         if (!sections.length) return;
@@ -30,6 +92,7 @@
         if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
             currentIndex = index;
+            updateActiveDot(currentIndex);
         }
     }
 
@@ -76,7 +139,7 @@
         }, 150);
     }
 
-    // 根据滚动位置更新 currentIndex
+    // 根据滚动位置更新 currentIndex 和圆点
     function updateCurrentIndexFromScroll() {
         const container = getScrollContainer();
         const scrollLeft = container.scrollLeft;
@@ -92,32 +155,38 @@
         });
         if (newIndex !== currentIndex) {
             currentIndex = newIndex;
+            updateActiveDot(currentIndex);
         }
     }
 
     // 初始化
     function init() {
         sections = getSections();
-        if (sections.length <= 1) return; // 只有一个模块时不需要滚动
+        if (sections.length <= 1) return; // 只有一个模块时不需要圆点
+
+        // 创建圆点指示器
+        createDots();
 
         // 确保每个模块宽度正确（响应视口变化）
         window.addEventListener('resize', () => {
-            // 重新获取 sections 并确保布局正常
             sections = getSections();
+            // 重建圆点（数量可能变化）
+            if (dotsContainer) dotsContainer.remove();
+            dots = [];
+            createDots();
             updateCurrentIndexFromScroll();
         });
 
         // 监听滚动事件（手动滚动）
         const container = getScrollContainer();
         container.addEventListener('scroll', onManualScroll);
-        // 触摸屏支持
         container.addEventListener('touchmove', onManualScroll);
         container.addEventListener('wheel', onManualScroll);
 
         // 启动自动滚动
         startAutoScroll();
 
-        // 初始定位到第一个模块（确保 scroll-snap 正确）
+        // 初始定位到第一个模块
         setTimeout(() => {
             scrollToIndex(0);
         }, 100);
