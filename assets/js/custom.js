@@ -1,7 +1,7 @@
-// 自动水平滚动功能 + 圆点指示器（优化版）
+// 自动水平滚动 + 圆点指示器（完整版，每5秒自动切换）
 (function() {
-    const intervalTime = 5000;      // 自动滚动间隔（毫秒），5秒
-    const pauseAfterManual = 10000; // 手动滚动后暂停自动滚动的时间（毫秒），10秒
+    const intervalTime = 5000;      // 自动滚动间隔：5秒
+    const pauseAfterManual = 10000; // 手动滚动后暂停自动滚动的时间：10秒
 
     let currentIndex = 0;
     let autoScrollTimer = null;
@@ -11,17 +11,17 @@
     let dotsContainer = null;
     let dots = [];
 
-    // 获取滚动容器（body 或 html）
+    // 获取滚动容器
     function getScrollContainer() {
         return document.scrollingElement || document.documentElement;
     }
 
-    // 获取所有横向区块（.home-section）
+    // 获取所有横向区块
     function getSections() {
         return Array.from(document.querySelectorAll('.home-section'));
     }
 
-    // 滚动到指定索引的区块（使用 scrollTo 避免与 scroll-snap 冲突）
+    // 滚动到指定索引的区块
     function scrollToIndex(index) {
         if (!sections.length) return;
         index = Math.max(0, Math.min(index, sections.length - 1));
@@ -35,12 +35,10 @@
         }
     }
 
-    // 滚动到下一个区块
+    // 滚动到下一个区块（循环）
     function scrollToNext() {
         let nextIndex = currentIndex + 1;
-        if (nextIndex >= sections.length) {
-            nextIndex = 0; // 循环滚动
-        }
+        if (nextIndex >= sections.length) nextIndex = 0;
         scrollToIndex(nextIndex);
     }
 
@@ -48,9 +46,7 @@
     function startAutoScroll() {
         if (autoScrollTimer) clearInterval(autoScrollTimer);
         autoScrollTimer = setInterval(() => {
-            if (isAutoScrolling) {
-                scrollToNext();
-            }
+            if (isAutoScrolling) scrollToNext();
         }, intervalTime);
     }
 
@@ -64,19 +60,15 @@
         }, pauseAfterManual);
     }
 
-    // 根据滚动位置更新 currentIndex 和圆点（优化版，避免 getBoundingClientRect）
+    // 根据滚动位置更新当前索引和圆点
     function updateCurrentIndexFromScroll() {
         const container = getScrollContainer();
         const scrollLeft = container.scrollLeft;
         let newIndex = 0;
-        // 遍历区块，找到最接近滚动位置的那个
         for (let i = 0; i < sections.length; i++) {
             const left = sections[i].offsetLeft;
-            if (scrollLeft >= left - 50) { // 阈值50px，允许轻微偏差
-                newIndex = i;
-            } else {
-                break;
-            }
+            if (scrollLeft >= left - 50) newIndex = i;
+            else break;
         }
         if (newIndex !== currentIndex) {
             currentIndex = newIndex;
@@ -84,15 +76,11 @@
         }
     }
 
-    // 监听手动滚动（滚动结束后更新索引并暂停自动滚动）
+    // 手动滚动时的处理
     let scrollTimeout = null;
     function onManualScroll() {
         if (scrollTimeout) clearTimeout(scrollTimeout);
-        // 手动滚动时暂停自动滚动
-        if (isAutoScrolling) {
-            pauseAutoScroll();
-        }
-        // 延迟更新索引，避免高频计算
+        if (isAutoScrolling) pauseAutoScroll();
         scrollTimeout = setTimeout(() => {
             updateCurrentIndexFromScroll();
         }, 150);
@@ -158,7 +146,7 @@
         });
     }
 
-    // 重建圆点（当窗口大小改变或区块数量变化时）
+    // 重建圆点（窗口大小改变时）
     function rebuildDots() {
         if (dotsContainer) dotsContainer.remove();
         dots = [];
@@ -170,31 +158,24 @@
         sections = getSections();
         if (sections.length <= 1) return;
 
-        // 创建圆点
         createDots();
 
-        // 监听窗口大小变化，重新计算区块位置并重建圆点
         window.addEventListener('resize', () => {
             sections = getSections();
             rebuildDots();
             updateCurrentIndexFromScroll();
         });
 
-        // 监听滚动事件（手动滚动）
         const container = getScrollContainer();
         container.addEventListener('scroll', onManualScroll);
-        // 移动端触摸滚动同样触发 scroll 事件，无需额外监听 touchmove/wheel
 
-        // 启动自动滚动
         startAutoScroll();
 
-        // 初始定位到第一个区块
         setTimeout(() => {
             scrollToIndex(0);
         }, 100);
     }
 
-    // 页面加载完成后执行
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
