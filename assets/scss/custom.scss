@@ -2,7 +2,8 @@
 body {
   font-size: 1.05rem;
   line-height: 1.6;
-  background-color: #08172e; // 全局背景与 Hero 一致
+  background-color: #08172e;
+  color: #f0f0f0;
 }
 
 // ========== 2. 横向滚动核心布局 ==========
@@ -15,25 +16,22 @@ html, body {
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  scroll-padding-top: 70px;   // 避免固定导航栏遮挡滚动定位
+  scroll-padding-top: 70px;
 }
 
 .home-section {
-  display: inline-flex;        // 横向排列 + 内部 Flex 居中
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;      /* 关键：保持横向排列，不破坏内部布局 */
   width: 100vw;
   height: 100vh;
   scroll-snap-align: start;
   overflow-y: auto;
   vertical-align: top;
-  white-space: normal;
+  white-space: normal;        /* 确保内部文字换行 */
   box-sizing: border-box;
-  background-color: #08172e !important; // 强制统一背景色
+  background-color: #08172e;  /* 统一背景色 */
 }
 
-// 重置父容器，确保横向排列
+/* 重置父容器，确保横向排列 */
 .page-wrapper,
 .main-container,
 .container-fluid {
@@ -75,78 +73,69 @@ html, body {
   color: #ffffff !important;
 }
 
-// ========== 4. 区块内容垂直居中（统一且可靠） ==========
-// 所有区块的主容器限制最大宽度并居中
+// ========== 4. 区块内容样式（确保所有内容可见） ==========
 .home-section .container,
 .home-section .hero-body,
 .home-section .markdown-block {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1.5rem;
   box-sizing: border-box;
-}
-
-// Hero 区块额外确保内容完全居中
-.home-section.wg-hero {
-  .hero-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
-  }
-  .hero-image {
-    max-width: 80%;
-    height: auto;
-    margin: 0 auto 1.5rem;
-  }
-}
-
-// Collection 区块限制稍窄宽度
-.home-section.wg-collection .container {
-  max-width: 1000px;
-}
-
-// 调整标题与卡片间距
-.section-heading {
-  margin-bottom: 2rem;
-}
-
-// ========== 5. 文字颜色（深色背景上保持浅色） ==========
-body, 
-.home-section, 
-.section-heading, 
-.hero-body, 
-.markdown-block, 
-.wg-markdown,
-.home-section .container {
   color: #f0f0f0;
 }
 
-// 卡片、论文条目等内部元素使用半透明白色背景
-.card, 
-.publication-item {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  color: #fff;
+/* 让区块内容在垂直方向居中（使用 flex，但不破坏横向排列） */
+.home-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-// 链接颜色
-a:not(.btn) {
+/* Hero 区块内部调整 */
+.home-section.wg-hero .hero-body {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image {
+  max-width: 80%;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+
+/* Collection 区块（新闻、论文）卡片样式 */
+.card, .publication-item {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #fff;
+  border: none;
+  margin-bottom: 1rem;
+}
+
+/* 文章标题、链接颜色 */
+.collection .article-title a,
+.publication-title a {
   color: #9ec8e0;
 }
-a:not(.btn):hover {
+.collection .article-title a:hover,
+.publication-title a:hover {
   color: #c0e0f0;
 }
 
-// ========== 6. 其他样式（字体、按钮等） ==========
+/* 调整标题与卡片间距 */
+.section-heading {
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+/* 其他文字样式 */
 .hero-body .hero-text {
   font-size: 1.25rem;
   font-weight: 500;
-}
-.hero-body .hero-lead {
-  font-size: 1.1rem;
 }
 .markdown-block p, .wg-markdown p, .markdown-block li, .wg-markdown li {
   font-size: 1.05rem;
@@ -157,24 +146,11 @@ a:not(.btn):hover {
 .cta-group .btn {
   font-size: 1rem;
 }
-.collection .article-title {
-  font-size: 1.2rem;
-}
-.collection .article-summary {
-  font-size: 0.95rem;
-}
-.publication-item .publication-title {
-  font-size: 1.1rem;
-}
-.publication-item .publication-authors,
-.publication-item .publication-date {
-  font-size: 0.85rem;
-}
 footer .powered-by {
   font-size: 0.8rem;
 }
 
-// ========== 7. 移动端适配 ==========
+// ========== 5. 移动端适配 ==========
 @media (max-width: 768px) {
   body {
     font-size: 0.95rem;
@@ -194,19 +170,42 @@ footer .powered-by {
   }
 }
 
-// ========== 8. 圆点指示器样式 ==========
+// ========== 6. 圆点指示器（强制圆形） ==========
 .scroll-dots {
-  bottom: 30px !important;
-  gap: 16px !important;
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  z-index: 1050;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
+
 .scroll-dot {
+  display: block;
   width: 12px !important;
   height: 12px !important;
-  background-color: rgba(255, 255, 255, 0.6) !important;
-  transition: all 0.2s ease !important;
-  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+  border-radius: 50% !important;
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  border: none !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none;
 }
+
 .scroll-dot:hover {
   background-color: rgba(255, 255, 255, 0.9) !important;
-  transform: scale(1.2) !important;
+  transform: scale(1.2);
+}
+
+/* 激活圆点样式（由 JS 动态添加类） */
+.scroll-dot.active {
+  background-color: #ffffff !important;
+  transform: scale(1.3);
 }
