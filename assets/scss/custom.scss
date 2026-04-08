@@ -2,7 +2,7 @@
 body {
   font-size: 1.05rem;
   line-height: 1.6;
-  background-color: #08172e; // 与 Hero 背景色一致，避免缝隙
+  background-color: #08172e; // 全局背景与 Hero 一致
 }
 
 // ========== 2. 横向滚动核心布局 ==========
@@ -19,7 +19,7 @@ html, body {
 }
 
 .home-section {
-  display: inline-flex;        // 保持横向排列 + 内部 Flex 居中
+  display: inline-flex;        // 横向排列 + 内部 Flex 居中
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -30,6 +30,7 @@ html, body {
   vertical-align: top;
   white-space: normal;
   box-sizing: border-box;
+  background-color: #08172e !important; // 强制统一背景色
 }
 
 // 重置父容器，确保横向排列
@@ -86,7 +87,7 @@ html, body {
   box-sizing: border-box;
 }
 
-// Hero 区块额外确保内容完全居中（无偏移）
+// Hero 区块额外确保内容完全居中
 .home-section.wg-hero {
   .hero-body {
     display: flex;
@@ -94,10 +95,8 @@ html, body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: auto; // 避免强制高度导致溢出
     padding: 2rem;
   }
-  // 图片自适应
   .hero-image {
     max-width: 80%;
     height: auto;
@@ -105,7 +104,7 @@ html, body {
   }
 }
 
-// Collection 区块限制稍窄宽度，保持可读性
+// Collection 区块限制稍窄宽度
 .home-section.wg-collection .container {
   max-width: 1000px;
 }
@@ -115,7 +114,33 @@ html, body {
   margin-bottom: 2rem;
 }
 
-// ========== 5. 其他样式（字体、颜色等） ==========
+// ========== 5. 文字颜色（深色背景上保持浅色） ==========
+body, 
+.home-section, 
+.section-heading, 
+.hero-body, 
+.markdown-block, 
+.wg-markdown,
+.home-section .container {
+  color: #f0f0f0;
+}
+
+// 卡片、论文条目等内部元素使用半透明白色背景
+.card, 
+.publication-item {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #fff;
+}
+
+// 链接颜色
+a:not(.btn) {
+  color: #9ec8e0;
+}
+a:not(.btn):hover {
+  color: #c0e0f0;
+}
+
+// ========== 6. 其他样式（字体、按钮等） ==========
 .hero-body .hero-text {
   font-size: 1.25rem;
   font-weight: 500;
@@ -149,7 +174,7 @@ footer .powered-by {
   font-size: 0.8rem;
 }
 
-// ========== 6. 移动端适配 ==========
+// ========== 7. 移动端适配 ==========
 @media (max-width: 768px) {
   body {
     font-size: 0.95rem;
@@ -169,7 +194,7 @@ footer .powered-by {
   }
 }
 
-// ========== 7. 圆点指示器样式 ==========
+// ========== 8. 圆点指示器样式 ==========
 .scroll-dots {
   bottom: 30px !important;
   gap: 16px !important;
