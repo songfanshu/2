@@ -28,7 +28,7 @@ html, body {
   width: 100vw;
   height: 100vh;
   scroll-snap-align: start;
-  overflow-y: auto;        /* 改为 auto，内容过多时可滚动 */
+  overflow-y: auto;
   vertical-align: top;
   white-space: normal;
   box-sizing: border-box;
@@ -81,7 +81,7 @@ html, body {
   border-bottom: 2px solid #ffffff;
 }
 
-/* ========== 4. 区块内容样式（关键修改） ========== */
+/* ========== 4. 区块内容样式（修复长列表裁剪） ========== */
 .home-section .container,
 .home-section .hero-body,
 .home-section .markdown-block {
@@ -91,14 +91,14 @@ html, body {
   padding: 1.5rem;
   box-sizing: border-box;
   color: #f0f0f0;
-  height: auto;           /* 改为 auto，不再强制 100% */
-  min-height: 100%;       /* 保证至少占满父容器高度 */
+  height: auto;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;  /* 从顶部开始排列，不强制居中 */
+  justify-content: flex-start;  /* 从顶部开始，不强制居中（Hero 单独处理） */
 }
 
-/* 保持 Hero 区块内部垂直居中（通常 Hero 内容较少） */
+/* 保持 Hero 区块内部垂直居中（内容较少时） */
 .home-section.wg-hero .hero-body {
   justify-content: center;
   align-items: center;
@@ -111,7 +111,7 @@ html, body {
   justify-content: flex-start;
 }
 
-/* 区块水平文本不强制居中（动态列表左对齐更自然） */
+/* 区块水平文本默认左对齐（动态列表更自然），Hero 区块单独处理居中 */
 .home-section {
   text-align: left;
 }
@@ -342,7 +342,68 @@ footer .powered-by {
   transform: translateX(5px);
 }
 
-/* 确保最新动态所在的区块内部滚动条独立且完整显示 */
+/* 确保最新动态所在的区块内部滚动条独立 */
 .home-section:has(.latest-news) {
   overflow-y: auto;
+}
+
+/* ========== 8. 首页 Hero 区块完美居中（新增） ========== */
+/* 确保 Hero 区块容器占满整个视口高度，并开启 Flex 居中 */
+.home-section.wg-hero {
+  display: flex;
+  align-items: center;      /* 垂直居中 */
+  justify-content: center;  /* 水平居中 */
+  text-align: center;
+}
+
+/* Hero 内部主体内容区域 */
+.home-section.wg-hero .hero-body {
+  width: 100%;
+  max-width: 900px;         /* 限制最大宽度，避免文字过长 */
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* 子元素水平居中 */
+  justify-content: center;
+}
+
+/* Hero 内的图片（例如课题组 Logo 或 banner） */
+.home-section.wg-hero .hero-image {
+  display: block;
+  margin: 0 auto 1.5rem auto;  /* 上下外边距，左右自动居中 */
+  max-width: 80%;
+  height: auto;
+}
+
+/* Hero 内的标题、副标题、段落 */
+.home-section.wg-hero h1,
+.home-section.wg-hero .hero-title {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-section.wg-hero .hero-subtitle,
+.home-section.wg-hero .hero-lead {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 如果描述文本中包含多行，保持居中 */
+.home-section.wg-hero .hero-body p {
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 按钮组居中 */
+.home-section.wg-hero .btn-group,
+.home-section.wg-hero .cta-group {
+  justify-content: center;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
