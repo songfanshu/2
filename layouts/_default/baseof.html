@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+    {{ partial "site_head" . }}
+
+    <!-- 横向滑动动画 CSS -->
+    <style>
+        html, body {
+            overflow-x: hidden;
+        }
+        .transition-main {
+            position: relative;
+            width: 100%;
+        }
+        /* 离开动画 */
+        .swup-transition-main.is-leaving {
+            transform: translateX(-30px);
+            opacity: 0;
+            transition: transform 0.35s ease-out, opacity 0.3s ease-out;
+        }
+        /* 进入初始状态 */
+        html.is-changing .swup-transition-main {
+            transform: translateX(30px);
+            opacity: 0;
+        }
+        /* 进入动画 */
+        html.is-changing .swup-transition-main.is-animating {
+            transform: translateX(0);
+            opacity: 1;
+            transition: transform 0.35s ease-out, opacity 0.3s ease-out;
+        }
+        /* 避免滚动条抖动 */
+        html.is-changing {
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+    <!-- 主内容容器，Swup 将替换此元素内部的内容 -->
+    <main id="swup" class="transition-main">
+        {{ block "main" . }}{{ end }}
+    </main>
+
+    <!-- 引入 Swup -->
+    <script src="https://unpkg.com/swup@4"></script>
+    <script>
+        (function() {
+            // 确保 DOM 加载完成
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initSwup);
+            } else {
+                initSwup();
+            }
+
+            function initSwup() {
+                // 稍微延迟，避免与主题初始化冲突
+                setTimeout(function() {
+                    const swup = new Swup({
+                        containers: ['#swup'],
+                        linkSelector: 'a[href^="/"]:not([data-no-swup]), a[href^="' + window.location.origin + '"]:not([data-no-swup])',
+                        cache: true,
+                        animateHistoryBrowsing: true,
+                    });
+
+                    // 切换后重新初始化主题组件
+                    swup.on('contentReplaced', function() {
+                        // 重新运行 Wowchemy 初始化函数
+                        if (typeof window.hugoBlox !== 'undefined' && window.hugoBlox.initAll) {
+                            window.hugoBlox.initAll();
+                        }
+                        // 重新触发图片懒加载（如果存在）
+                        if (typeof lazySizes !== 'undefined' && lazySizes.init) {
+                            lazySizes.init();
+                        }
+                        // 触发自定义事件，便于其他脚本监听
+                        document.dispatchEvent(new Event('swup:contentReplaced'));
+                    });
+                }, 100);
+            }
+        })();
+    </script>
+
+    <!-- 主题原有的底部脚本（保留所有功能） -->
+    {{ partial "site_js" . }}
+</body>
+</html>
