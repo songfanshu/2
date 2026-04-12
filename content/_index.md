@@ -1,80 +1,81 @@
 ---
-# Leave the homepage title empty to use the site title
-title: ''
-date: 2026-03-20
-type: landing
-
-sections:
-  - block: hero
-    content:
-      title: ''
-      image:
-        filename: brain-chip.png
-      text: |
-        先进集成电路材料与类脑芯片课题组 (Advanced IC Materials & Neuromorphic Chips Lab) 致力于突破后摩尔时代的算力瓶颈，聚焦于新型半导体材料、忆阻器器件、以及具有高能效比的神经形态（类脑）计算架构的研究与应用。
-    design:
-      background:
-        color: '#08172e'
-        text_color_light: true
-
-  - block: collection
-    content:
-      title: '最新动态 (News)'
-      subtitle: ''
-      text: ''
-      count: 5
-      filters:
-        author: ''
-        category: ''
-        exclude_featured: false
-        publication_type: ''
-        tag: ''
-      offset: 0
-      order: desc
-      page_type: post
-    design:
-      view: card
-      columns: '1'
-      background:
-        color: '#ffffff'
-
-  - block: markdown
-    content:
-      title: '课题组愿景'
-      subtitle: ''
-      text: '我们在新型微电子材料、非易失性存储器和神经形态计算领域不断探索，旨在研发下一代高能效、高集成度的类脑芯片。我们的研究覆盖从底层纳米材料生长、器件微纳加工，到顶层神经网络算法及芯片架构设计的全链条。'
-    design:
-      columns: '1'
-      background:
-        color: '#f0f7ff'
-      spacing:
-        padding: ['80px', '0', '80px', '0']
-
-  - block: collection
-    content:
-      title: '学术论文'
-      text: ''
-      count: 5
-      filters:
-        folders:
-          - publication
-        publication_type: 'article'
-    design:
-      view: citation
-      columns: '1'
-      background:
-        color: '#ffffff'
-
-  - block: markdown
-    content:
-      title: ''
-      subtitle: ''
-      text: '{{% cta cta_link="./people/" cta_text="了解我们的团队 →" %}}'
-    design:
-      columns: '1'
-      background:
-        color: '#1a56db'
-        text_color_light: true
-      spacing:
-        padding: ['50px', '0', '50px', '0']
+headless: true
+widget: blank
+weight: 1
 ---
+
+<!-- 🔥 全屏横向轮播容器 -->
+<div class="fullscreen-slider">
+
+  <!-- 第1页 -->
+  <div class="slide-page">
+    <section class="home-section wg-hero">
+      <div class="hero-body">
+        <img src="/uploads/hero1.jpg" class="hero-image" alt="图片1">
+        <h1>第一页 标题</h1>
+        <p class="hero-subtitle">第一页 副标题</p>
+        <p>这里是第一页的内容文字，完美居中</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- 第2页 -->
+  <div class="slide-page">
+    <section class="home-section wg-hero">
+      <div class="hero-body">
+        <img src="/uploads/hero2.jpg" class="hero-image" alt="图片2">
+        <h1>第二页 标题</h1>
+        <p class="hero-subtitle">第二页 副标题</p>
+        <p>这里是第二页的内容文字，完美居中</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- 第3页 -->
+  <div class="slide-page">
+    <section class="home-section wg-hero">
+      <div class="hero-body">
+        <img src="/uploads/hero3.jpg" class="hero-image" alt="图片3">
+        <h1>第三页 标题</h1>
+        <p class="hero-subtitle">第三页 副标题</p>
+        <p>这里是第三页的内容文字，完美居中</p>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+<!-- 🔥 底部小圆点（有几页就写几个） -->
+<ul class="slider-dots">
+  <li class="slider-dot active"></li>
+  <li class="slider-dot"></li>
+  <li class="slider-dot"></li>
+</ul>
+
+<!-- 🔥 JS 自动切换代码（直接写在这里，不用找footer文件！） -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const slider = document.querySelector('.fullscreen-slider');
+  const pages = document.querySelectorAll('.slide-page');
+  const dots = document.querySelectorAll('.slider-dot');
+  const total = pages.length;
+  let current = 0;
+  const time = 5000; // 5秒自动切换
+
+  function goTo(i) {
+    current = i;
+    slider.scrollLeft = i * window.innerWidth;
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+  }
+
+  // 自动轮播
+  let auto = setInterval(() => goTo((current + 1) % total), time);
+
+  // 圆点点击
+  dots.forEach((d, i) => d.addEventListener('click', () => {
+    clearInterval(auto);
+    goTo(i);
+    auto = setInterval(() => goTo((current + 1) % total), time);
+  }));
+});
+</script>
