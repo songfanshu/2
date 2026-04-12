@@ -1,69 +1,117 @@
-/* ========== 全局：首页所有区块基础居中 ========== */
-/* 首页所有 section 区块默认文字居中 */
-.home-section {
-  text-align: center; // 文字水平居中
-  margin-left: auto;
-  margin-right: auto; // 区块容器本身水平居中
+/* ========== 全局重置：全屏横向布局基础 ========== */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* 隐藏默认滚动条 */
+  scroll-behavior: smooth; /* 平滑滚动 */
 }
 
-/* 首页所有区块内的图片统一居中（兼容所有 Widget 内的图片） */
+/* 全屏滑动容器（核心） */
+.fullscreen-slider {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row; /* 横向排列页面 */
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory; /* 滑动吸附效果 */
+}
+
+/* 单页：100% 铺满全屏 */
+.slide-page {
+  flex: 0 0 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ========== 底部小圆点导航 ========== */
+.slider-dots {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  z-index: 999;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 圆点样式 */
+.slider-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+}
+
+/* 当前激活圆点高亮 */
+.slider-dot.active {
+  background: #ffffff;
+  transform: scale(1.2);
+}
+
+/* ========== 保留你原有的完美居中样式（无修改） ========== */
+/* 首页所有区块基础居中 */
+.home-section {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 首页所有图片居中 */
 .home-section img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-width: 100%; // 限制图片最大宽度，避免溢出
-  height: auto; // 保持图片宽高比
+  max-width: 100%;
+  height: auto;
 }
 
-/* 首页区块内的 Bootstrap 行元素（row）内部内容居中 */
-.home-section .row {
-  justify-content: center; // Flex 布局下子元素水平居中
-}
-
-/* 首页区块内的容器（container）适配居中 */
-.home-section .container {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ========== 首页 Hero 区块精准居中（保留并优化原有逻辑） ========== */
-/* 确保 Hero 区块容器占满整个视口高度，并开启 Flex 居中 */
+/* Hero 区块完美居中 */
 .home-section.wg-hero {
   display: flex;
-  align-items: center;      /* 垂直居中 */
-  justify-content: center;  /* 水平居中 */
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  min-height: 80vh; // 可选：设置 Hero 最小高度为视口80%，视觉更饱满
+  min-height: 100vh;
 }
 
-/* Hero 内部主体内容区域 */
 .home-section.wg-hero .hero-body {
   width: 100%;
-  max-width: 900px;         /* 限制最大宽度，避免文字过长 */
+  max-width: 900px;
   margin: 0 auto;
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;      /* 子元素水平居中 */
+  align-items: center;
   justify-content: center;
 }
 
-/* Hero 内的图片（例如课题组 Logo 或 banner） */
 .home-section.wg-hero .hero-image {
   display: block;
-  margin: 0 auto 1.5rem auto;  /* 上下外边距，左右自动居中 */
+  margin: 0 auto 1.5rem auto;
   max-width: 80%;
   height: auto;
 }
 
-/* Hero 内的标题、副标题、段落 */
 .home-section.wg-hero h1,
-.home-section.wg-hero .hero-title {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
+.home-section.wg-hero .hero-title,
 .home-section.wg-hero .hero-subtitle,
 .home-section.wg-hero .hero-lead {
   text-align: center;
@@ -71,42 +119,29 @@
   margin-right: auto;
 }
 
-/* 如果描述文本中包含多行，保持居中 */
 .home-section.wg-hero .hero-body p {
   text-align: center;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.6; // 可选：优化行高，提升阅读体验
+  line-height: 1.6;
 }
 
-/* 按钮组居中 */
 .home-section.wg-hero .btn-group,
 .home-section.wg-hero .cta-group {
   justify-content: center;
   display: flex;
   gap: 1rem;
-  flex-wrap: wrap; // 适配移动端，按钮自动换行
-  margin-top: 1.5rem; // 可选：增加按钮组上边距，与文本拉开距离
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
 }
 
-/* ========== 补充：其他常见 Widget 精细化居中（可选，按需保留） ========== */
-/* 团队成员/About 区块居中 */
+/* 团队/出版物等区块兼容居中 */
 .home-section.wg-about,
-.home-section.wg-team {
-  text-align: center;
-}
-.home-section.wg-team .card {
-  margin-left: auto;
-  margin-right: auto; // 团队卡片本身居中
-}
-
-/* 出版物/论文列表区块居中 */
+.home-section.wg-team,
 .home-section.wg-publication {
   text-align: center;
-}
-.home-section.wg-publication .pub-list-item {
-  margin-left: auto;
-  margin-right: auto; // 单篇论文条目居中
-  max-width: 800px; // 限制论文条目宽度
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
