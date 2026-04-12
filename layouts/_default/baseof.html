@@ -1,93 +1,56 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}" itemscope itemtype="http://schema.org/WebPage">
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  {{ partial "site_head" . }}
-
-  <!-- 横向滑动动画 CSS (模仿 lanzalab.org) -->
-  <style>
-    /* 过渡容器 */
-    .transition-container {
-      position: relative;
-      width: 100%;
-    }
-    /* 离开动画：向左滑出 + 淡出 */
-    .swup-transition-container.is-leaving {
-      transform: translateX(-30px);
-      opacity: 0;
-      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1), opacity 0.3s ease;
-    }
-    /* 进入动画初始状态：从右侧滑入 */
-    html.is-changing .swup-transition-container {
-      transform: translateX(30px);
-      opacity: 0;
-    }
-    /* 进入动画进行中 */
-    html.is-changing .swup-transition-container.is-animating {
-      transform: translateX(0);
-      opacity: 1;
-      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1), opacity 0.3s ease;
-    }
-    /* 防止滚动条宽度变化导致抖动 */
-    html.is-changing {
-      overflow-y: scroll;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>{{ .Title }}</title>
+    <style>
+        /* 横向滑动动画 */
+        .transition-main {
+            position: relative;
+            width: 100%;
+        }
+        .swup-transition-main.is-leaving {
+            transform: translateX(-30px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.2s ease;
+        }
+        html.is-changing .swup-transition-main {
+            transform: translateX(30px);
+            opacity: 0;
+        }
+        html.is-changing .swup-transition-main.is-animating {
+            transform: translateX(0);
+            opacity: 1;
+            transition: transform 0.3s ease, opacity 0.2s ease;
+        }
+        html.is-changing {
+            overflow-y: scroll;
+        }
+        /* 临时导航样式 */
+        nav a { margin-right: 1rem; }
+    </style>
 </head>
 <body>
-  {{ partial "site_header" . }}
+    <nav>
+        <a href="/">Home</a>
+        <a href="/post/">News</a>
+        <a href="/people/">People</a>
+        <a href="/publication/">Publications</a>
+    </nav>
 
-  <!-- 将主内容区域包裹在 Swup 容器中 -->
-  <div id="swup" class="transition-container">
-    {{ block "main" . }}{{ end }}
-  </div>
+    <main id="swup" class="transition-main">
+        {{ block "main" . }}{{ end }}
+    </main>
 
-  {{ partial "site_footer" . }}
-  {{ partial "site_js" . }}
-
-  <!-- 引入 Swup 库 -->
-  <script src="https://unpkg.com/swup@4"></script>
-  <script>
-    (function() {
-      function initSwup() {
-        // 确保 DOM 已准备好
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initSwup);
-          return;
-        }
-        // 稍微延迟，避免与主题初始化冲突
-        setTimeout(function() {
-          const swup = new Swup({
-            containers: ['#swup'],
-            linkSelector: 'a[href^="/"]:not([data-no-swup]), a[href^="' + window.location.origin + '"]:not([data-no-swup])',
-            cache: true,
-            animateHistoryBrowsing: true,
-            // 可选：禁用默认滚动行为，自己控制（保持主题原有滚动）
-            scroll: true,
-          });
-
-          // 页面切换完成后，重新初始化主题的动态组件（如图片懒加载、搜索、数学公式等）
-          swup.on('contentReplaced', function() {
-            // Wowchemy 主题的全局初始化函数（如果存在）
-            if (typeof window.hugoBlox !== 'undefined' && window.hugoBlox.initAll) {
-              window.hugoBlox.initAll();
-            }
-            // 重新触发图片懒加载（如果主题使用了 lazysizes）
-            if (typeof lazySizes !== 'undefined' && lazySizes.init) {
-              lazySizes.init();
-            }
-            // 重新绑定搜索弹窗等交互
-            if (typeof window.initSearch !== 'undefined') {
-              window.initSearch();
-            }
-            // 派发自定义事件，供其他脚本监听
-            document.dispatchEvent(new CustomEvent('swup:contentReplaced'));
-          });
-        }, 100);
-      }
-      initSwup();
-    })();
-  </script>
+    <script src="https://unpkg.com/swup@4"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            new Swup({
+                containers: ['#swup'],
+                linkSelector: 'a[href^="/"]',
+                cache: true,
+            });
+        });
+    </script>
 </body>
 </html>
