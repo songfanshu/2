@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {{ partial "site_head" . }}
+  <!-- 添加横向滑动 CSS -->
+  <style>
+    .swup-transition-main.is-leaving {
+      transform: translateX(-20px);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.2s ease;
+    }
+    html.is-changing .swup-transition-main {
+      transform: translateX(20px);
+      opacity: 0;
+    }
+    html.is-changing .swup-transition-main.is-animating {
+      transform: translateX(0);
+      opacity: 1;
+      transition: transform 0.3s ease, opacity 0.2s ease;
+    }
+    html.is-changing {
+      overflow-y: scroll;
+    }
+  </style>
+</head>
+<body>
+  {{ partial "site_header" . }}
+  <div id="swup" class="swup-transition-main">
+    {{ block "main" . }}{{ end }}
+  </div>
+  {{ partial "site_footer" . }}
+  {{ partial "site_js" . }}
+  <script src="https://unpkg.com/swup@4"></script>
+  <script>
+    (function() {
+      function initSwup() {
+        const swup = new Swup({
+          containers: ['#swup'],
+          linkSelector: 'a[href^="/"]:not([data-no-swup]), a[href^="' + window.location.origin + '"]:not([data-no-swup])',
+          cache: true,
+          animateHistoryBrowsing: true,
+        });
+        swup.on('contentReplaced', () => {
+          if (typeof window.hugoBlox !== 'undefined' && window.hugoBlox.initAll) {
+            window.hugoBlox.initAll();
+          }
+          if (typeof lazySizes !== 'undefined') lazySizes.init();
+          document.dispatchEvent(new Event('swup:contentReplaced'));
+        });
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initSwup);
+      else initSwup();
+    })();
+  </script>
+</body>
+</html>
