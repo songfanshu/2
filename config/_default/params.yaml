@@ -3,24 +3,28 @@
 # Documentation: https://docs.hugoblox.com/
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
-# Appearance
+# Basic configuration
+title: 先进集成电路材料与类脑芯片课题组
+baseURL: 'https://您的edgeone域名.com/'
+defaultContentLanguage: zh
+hasCJKLanguage: true
+defaultContentLanguageInSubdir: false
+removePathAccents: true
 
+# Appearance
 appearance:
   theme_day: blue     # 将 minimal 改为 blue
   theme_night: ocean  # 增加或修改夜间模式为 ocean
   font: native
   font_size: L
-  
-  custom_js: ["js/custom.js"]
 
 # SEO
-
 marketing:
   seo:
     site_type: Organization
     local_business_type: ''
     org_name: ''
-    description: 'A highly-customizable Hugo research group theme powered by Wowchemy website builder.'
+    description: '专注于先进集成电路材料、神经形态计算与类脑芯片架构的顶尖科研团队。'
     twitter: 'GetResearchDev'
   analytics:
     google_analytics: ''
@@ -32,7 +36,6 @@ marketing:
     baidu: ''
 
 # Site header
-
 header:
   navbar:
     enable: true
@@ -44,28 +47,22 @@ header:
     highlight_active_link: false
 
 # Site footer
-
 footer:
   copyright:
-    notice: '© {year} 先进集成电路材料与类脑芯片课题组'
+    notice: '© {year} 先进集成电路材料与类脑芯片课题组. This work is licensed under {license}'
     license:
       enable: true
       allow_derivatives: false
       share_alike: true
       allow_commercial: false
 
-# Social links (disable all) – 删除 YouTube、Facebook 等图标
-social: []
-
 # Localization
-
 locale:
   date_format: 'Jan 2, 2006'
   time_format: '3:04 PM'
   address_format: en-us
 
 # Site features
-
 features:
   syntax_highlighter:
     enable: false
@@ -106,19 +103,193 @@ features:
     provider: 'mapnik'
     api_key: ''
     zoom: 15
-# Extensions
 
+# Extensions
 extensions:
   decap_cms:
     branch: main
     local_backend: false
   academicons:
     enable: true
-  hugo_blox_builder:    # 关闭页脚 Powered by 提示
-    powered_by: false
 
 # Citation style
-
 publications:
   date_format: January 2006
   citation_style: apa
+
+# 主题特定配置 - 添加横向滚动和圆点指示器支持
+theme:
+  homepage:
+    # 启用横向滚动布局
+    layout: horizontal_scroll
+    # 显示页面切换圆点指示器
+    show_page_dots: true
+    # 圆点指示器样式
+    page_dots_style: "circle"  # 可选: circle, square, line
+    # 自动播放间隔（毫秒）
+    auto_play_interval: 5000
+    # 是否启用触摸滑动
+    enable_swipe: true
+    
+  # 导航菜单配置
+  menu:
+    # 在导航中突出显示当前页面
+    highlight_current: true
+    # 菜单项目样式
+    item_style: "horizontal"  # 或 "vertical"
+    
+  # 内容区域配置
+  content:
+    # 限制内容宽度
+    max_width: "1200px"
+    # 内边距
+    padding: "2rem"
+    
+  # 组件配置
+  widgets:
+    # 确保最新动态组件正确显示
+    news:
+      enable: true
+      limit: 10  # 显示最新的10条新闻
+      show_date: true
+      show_excerpt: true
+      layout: "list"  # 或 "grid", "cards"
+      
+    # 首页组件配置
+    hero:
+      enable: true
+      height: "100vh"  # 全屏高度
+      
+    # 团队成员组件
+    team:
+      enable: true
+      layout: "grid"
+      columns: 3
+      
+    # 联系方式组件
+    contact:
+      enable: true
+      show_form: true
+      show_info: true
+      
+# 自定义CSS和JS
+assets:
+  favicon: "images/favicon.ico"
+  logo:
+    light_mode: "images/logo.svg"
+    dark_mode: "images/logo.svg"
+  custom_css:
+    - "css/custom.css"
+  custom_js:
+    - "js/custom.js"
+    
+# 页面过渡效果
+animation:
+  enable: true
+  type: "fade"  # 可选: fade, slide, zoom
+  duration: 0.5  # 过渡持续时间（秒）
+  
+# 滚动行为
+scroll:
+  behavior: "smooth"  # 平滑滚动
+  snap: true  # 启用滚动吸附
+  snap_type: "mandatory"  # 强制吸附
+  
+# 响应式设计
+responsive:
+  breakpoints:
+    xs: 0
+    sm: 576px
+    md: 768px
+    lg: 992px
+    xl: 1200px
+    xxl: 1400px
+  # 移动端优化
+  mobile_optimized: true
+  # 触摸友好的交互
+  touch_friendly: true
+  
+# 性能优化
+performance:
+  preload: true
+  lazy_load_images: true
+  minify_css: true
+  minify_js: true
+  optimize_images: true
+
+# 菜单配置
+menu:
+  main:
+    - name: 首页
+      url: tour
+      weight: 10
+    - name: 课题组新闻
+      url: post
+      weight: 20
+    - name: 团队成员
+      url: people
+      weight: 30
+    - name: 学术会议
+      url: event
+      weight: 40
+    - name: 发表论文
+      url: publication
+      weight: 50
+    - name: 联系我们
+      url: contact
+      weight: 60
+
+# 语言配置
+languages:
+  zh:
+    languageCode: zh-Hans
+    title: 先进集成电路材料与类脑芯片课题组
+    params:
+      description: 专注于先进集成电路材料、神经形态计算与类脑芯片架构的顶尖科研团队。
+
+# Hugo高级配置
+enableGitInfo: false
+summaryLength: 30
+pagination:
+  pagerSize: 10
+enableEmoji: true
+enableRobotsTXT: true
+footnotereturnlinkcontents: <sup>^</sup>
+ignoreFiles: [\.ipynb$, .ipynb_checkpoints$, \.Rmd$, \.Rmarkdown$, _cache$]
+permalinks:
+  authors: '/author/:slug/'
+  tags: '/tag/:slug/'
+  categories: '/category/:slug/'
+  publication_types: '/publication-type/:slug/'
+disableAliases: true
+outputs:
+  home: [HTML, RSS, JSON, WebAppManifest, headers, redirects]
+  section: [HTML, RSS]
+imaging:
+  resampleFilter: lanczos
+  quality: 75
+  anchor: smart
+timeout: 600000
+taxonomies:
+  tag: tags
+  category: categories
+  publication_type: publication_types
+  author: authors
+markup:
+  _merge: deep
+related:
+  threshold: 80
+  includeNewer: true
+  toLower: true
+  indices:
+    - name: tags
+      weight: 100
+    - name: categories
+      weight: 70
+security:
+  _merge: deep
+sitemap:
+  _merge: deep
+
+# 版权信息
+copyright_year: 2024
