@@ -3,9 +3,26 @@
   'use strict';
 
   function getSlides() {
-    var all = Array.prototype.slice.call(document.querySelectorAll('.home-section'));
-    return all.filter(function (section) {
-      return !section.parentElement.closest('.home-section');
+    var main = document.querySelector('main');
+    var pageBody = document.querySelector('.page-body');
+    var roots = [main, pageBody].filter(Boolean);
+
+    for (var r = 0; r < roots.length; r++) {
+      var root = roots[r];
+      var candidates = Array.prototype.slice.call(root.children).filter(function (el) {
+        if (el.tagName === 'HEADER' || el.tagName === 'NAV' || el.tagName === 'FOOTER') return false;
+        var cls = typeof el.className === 'string' ? el.className : '';
+        return el.tagName === 'SECTION' ||
+          /home-section|wg-(hero|collection|markdown|people)/.test(cls);
+      });
+      if (candidates.length >= 2) return candidates;
+    }
+
+    var broad = Array.prototype.slice.call(document.querySelectorAll(
+      'main > section, .page-body > section, main .home-section, .page-body .home-section'
+    ));
+    return broad.filter(function (el, index, arr) {
+      return arr.indexOf(el.parentElement) === -1;
     });
   }
 
@@ -97,9 +114,11 @@
     document.body.appendChild(next);
 
     window.addEventListener('wheel', function (event) {
-      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX) || Math.abs(event.deltaY) < 12) return;
+      var vertical = Math.abs(event.deltaY);
+      var horizontal = Math.abs(event.deltaX);
+      if (vertical < 8 && horizontal < 8) return;
       event.preventDefault();
-      step(event.deltaY > 0 ? 1 : -1);
+      step((vertical >= horizontal ? event.deltaY : event.deltaX) > 0 ? 1 : -1);
     }, { passive: false });
 
     window.addEventListener('keydown', function (event) {
@@ -143,6 +162,7 @@
     boot();
     window.setTimeout(boot, 300);
     window.setTimeout(boot, 1200);
+    window.setTimeout(boot, 2500);
   }
 
   if (document.readyState === 'loading') {
