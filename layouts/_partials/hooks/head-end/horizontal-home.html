@@ -1,2 +1,2 @@
-{{ $css := resources.Get "css/horizontal-home.css" }}
-{{ with $css }}<link rel="stylesheet" href="{{ .RelPermalink }}?v=20260907-3">{{ end }}
+{{ $css := resources.Get "css/horizontal-home.css" | resources.Fingerprint "sha256" }}
+{{ with $css }}<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">{{ end }}
