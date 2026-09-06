@@ -2,30 +2,33 @@
 (function () {
   'use strict';
 
+  function getSlides() {
+    var all = Array.prototype.slice.call(document.querySelectorAll('.home-section'));
+    return all.filter(function (section) {
+      return !section.parentElement.closest('.home-section');
+    });
+  }
+
   function boot() {
     if (window.__LAB_HORIZONTAL_READY__) return;
 
-    var pageBody = document.querySelector('body.page-wrapper > .page-body') ||
-      document.querySelector('.page-body');
-    if (!pageBody) return;
-
-    var slides = Array.prototype.slice.call(
-      pageBody.querySelectorAll(':scope > .home-section')
-    );
-    if (slides.length < 2) {
-      slides = Array.prototype.slice.call(pageBody.querySelectorAll('.home-section'));
-    }
+    var slides = getSlides();
     if (slides.length < 2) return;
+
+    var main = document.querySelector('main');
+    var host = main || slides[0].parentElement;
+    if (!host) return;
 
     window.__LAB_HORIZONTAL_READY__ = true;
 
     var track = document.createElement('div');
     track.className = 'lab-horizontal-track';
+    host.insertBefore(track, slides[0]);
+
     slides.forEach(function (slide) {
       slide.classList.add('lab-horizontal-slide');
       track.appendChild(slide);
     });
-    pageBody.replaceChildren(track);
 
     document.documentElement.classList.add('lab-horizontal-home');
     document.body.classList.add('lab-horizontal-home');
