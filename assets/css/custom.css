@@ -23,7 +23,6 @@ body.page-wrapper {
   transform: none !important;
 }
 
-/* The actual horizontal track is .page-body, NOT body.page-wrapper. */
 body.page-wrapper > .page-body {
   display: flex !important;
   flex-direction: row !important;
@@ -40,7 +39,6 @@ body.page-wrapper > .page-body {
   will-change: transform;
 }
 
-/* Five full-screen slides: Home -> News -> Vision -> Papers -> Team */
 body.page-wrapper > .page-body > .home-section {
   position: relative !important;
   flex: 0 0 100vw !important;
@@ -57,7 +55,6 @@ body.page-wrapper > .page-body > .home-section {
   scroll-snap-align: none !important;
 }
 
-/* Fixed navigation, independent from the horizontal track. */
 .page-header {
   position: fixed !important;
   inset: 0 0 auto 0 !important;
@@ -94,7 +91,6 @@ body.page-wrapper > .page-body > .home-section {
   transform: translateY(-1px);
 }
 
-/* Keep each block vertically centered. */
 .home-section.wg-hero,
 .home-section.wg-collection,
 .home-section.wg-markdown {
@@ -141,7 +137,6 @@ body.page-wrapper > .page-body > .home-section {
   margin: 0 auto 1.5rem;
 }
 
-/* Content slide spacing */
 .home-section.wg-collection .container,
 .home-section.wg-markdown .container,
 .home-section.wg-collection .container-fluid,
@@ -151,16 +146,9 @@ body.page-wrapper > .page-body > .home-section {
   overflow: hidden;
 }
 
-.section-heading {
-  margin-bottom: 2rem;
-}
+.section-heading { margin-bottom: 2rem; }
+.section-heading h2 { font-size: clamp(2rem, 4vw, 4rem); line-height: 1.1; }
 
-.section-heading h2 {
-  font-size: clamp(2rem, 4vw, 4rem);
-  line-height: 1.1;
-}
-
-/* Cards */
 .card,
 .publication-item {
   border: 0 !important;
@@ -175,20 +163,8 @@ body.page-wrapper > .page-body > .home-section {
   box-shadow: 0 18px 45px rgba(0,0,0,.12);
 }
 
-/* Existing lab styling */
-.latest-news {
-  background-color: rgba(255,255,255,.05);
-  border-radius: 10px;
-  padding: 20px;
-  margin-top: 20px;
-}
-
-.news-item {
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  transition: all .3s ease;
-}
-
+.latest-news { background-color: rgba(255,255,255,.05); border-radius: 10px; padding: 20px; margin-top: 20px; }
+.news-item { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1); transition: all .3s ease; }
 .news-item:last-child { border-bottom: none; }
 .news-date { color: #9ec8e0; font-size: .9em; margin-bottom: 5px; display: block; }
 .news-title { color: #fff; font-size: 1.1em; margin: 0; padding: 0; }
@@ -204,57 +180,16 @@ body.page-wrapper > .page-body > .home-section {
 .focus-title { color:#fff; font-size:1.2rem; margin-bottom:10px; }
 .focus-description { color:#ccc; font-size:.95rem; }
 
-/* Bottom slide indicator */
-.horizontal-slide-dots {
-  position: fixed;
-  left: 50%;
-  bottom: 26px;
-  transform: translateX(-50%);
-  z-index: 11000;
-  display: flex;
-  gap: 9px;
-  align-items: center;
-}
-
-.horizontal-slide-dot {
-  width: 7px;
-  height: 7px;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(255,255,255,.42);
-  cursor: pointer;
-  transition: width .3s ease, background .3s ease, transform .3s ease;
-}
-
+.horizontal-slide-dots { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 11000; display: flex; gap: 9px; align-items: center; }
+.horizontal-slide-dot { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 999px; background: rgba(255,255,255,.42); cursor: pointer; transition: width .3s ease, background .3s ease, transform .3s ease; }
 .horizontal-slide-dot:hover { transform: scale(1.35); background: rgba(255,255,255,.8); }
 .horizontal-slide-dot.active { width: 28px; background: #fff; }
-
-/* Left/right slide controls */
-.horizontal-slide-arrow {
-  position: fixed;
-  top: 50%;
-  z-index: 11000;
-  width: 44px;
-  height: 44px;
-  border: 1px solid rgba(255,255,255,.25);
-  border-radius: 50%;
-  background: rgba(0,0,0,.18);
-  color: #fff;
-  font-size: 24px;
-  line-height: 1;
-  cursor: pointer;
-  transform: translateY(-50%);
-  backdrop-filter: blur(8px);
-  transition: background .25s ease, opacity .25s ease;
-}
-
+.horizontal-slide-arrow { position: fixed; top: 50%; z-index: 11000; width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; background: rgba(0,0,0,.18); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; transform: translateY(-50%); backdrop-filter: blur(8px); transition: background .25s ease, opacity .25s ease; }
 .horizontal-slide-arrow:hover { background: rgba(0,0,0,.45); }
 .horizontal-slide-arrow.prev { left: 22px; }
 .horizontal-slide-arrow.next { right: 22px; }
 .horizontal-slide-arrow:disabled { opacity: .2; cursor: default; }
 
-/* No vertical scrollbar on the landing page. */
 body.page-wrapper > .page-body::-webkit-scrollbar,
 html::-webkit-scrollbar,
 body::-webkit-scrollbar { width: 0; height: 0; }
@@ -272,4 +207,48 @@ html, body { scrollbar-width: none; }
   .home-section.wg-markdown .container-fluid { padding: 6rem 1.25rem 4rem; }
   .horizontal-slide-arrow { display: none; }
   .horizontal-slide-dots { bottom: 16px; }
+}
+
+/* =========================================================
+   FINAL OVERRIDE: page-body is only the viewport container.
+   horizontal-home.js owns the actual sliding track.
+   ========================================================= */
+body.page-wrapper > .page-body {
+  display: block !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  overflow: hidden !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.horizontal-home-track {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  width: 500vw !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  transform: translate3d(0,0,0);
+  transition: transform 720ms cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+}
+
+.horizontal-home-track > .home-section {
+  flex: 0 0 100vw !important;
+  width: 100vw !important;
+  min-width: 100vw !important;
+  max-width: 100vw !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  max-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
 }
