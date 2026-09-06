@@ -1,8 +1,6 @@
 /* =========================================================
    LAB HOMEPAGE — FULLSCREEN HORIZONTAL SLIDES
-   This stylesheet is loaded explicitly through a HugoBlox head hook.
    ========================================================= */
-
 html,
 body {
   width: 100%;
@@ -19,13 +17,12 @@ body.page-wrapper {
   overflow: hidden !important;
 }
 
-/* The JS creates this wrapper around the five homepage sections. */
 .horizontal-home-track {
   position: relative !important;
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: nowrap !important;
-  width: 500vw !important;
+  width: 500vw;
   height: 100vh !important;
   min-height: 100vh !important;
   margin: 0 !important;
@@ -52,7 +49,6 @@ body.page-wrapper {
   scroll-snap-align: none !important;
 }
 
-/* Keep the navigation above every slide. */
 .page-header {
   position: fixed !important;
   top: 0 !important;
@@ -63,14 +59,12 @@ body.page-wrapper {
 }
 
 .page-header .navbar,
-.navbar {
-  z-index: 10001 !important;
-}
+.navbar { z-index: 10001 !important; }
 
-/* Center the content inside every full-screen slide. */
 .horizontal-home-track > .home-section.wg-hero,
 .horizontal-home-track > .home-section.wg-collection,
-.horizontal-home-track > .home-section.wg-markdown {
+.horizontal-home-track > .home-section.wg-markdown,
+.horizontal-home-track > .home-section.wg-people {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -96,14 +90,20 @@ body.page-wrapper {
 
 .horizontal-home-track > .home-section.wg-collection .container,
 .horizontal-home-track > .home-section.wg-markdown .container,
+.horizontal-home-track > .home-section.wg-people .container,
 .horizontal-home-track > .home-section.wg-collection .container-fluid,
-.horizontal-home-track > .home-section.wg-markdown .container-fluid {
+.horizontal-home-track > .home-section.wg-markdown .container-fluid,
+.horizontal-home-track > .home-section.wg-people .container-fluid {
   width: 100%;
   padding: 7rem 5vw 4rem;
   box-sizing: border-box;
 }
 
-/* Slide navigation */
+.horizontal-home-track > .home-section.wg-people .people-widget {
+  max-height: calc(100vh - 10rem);
+  overflow: auto;
+}
+
 .horizontal-home-dots {
   position: fixed;
   left: 50%;
@@ -126,10 +126,7 @@ body.page-wrapper {
   transition: all .3s ease;
 }
 
-.horizontal-home-dot.active {
-  width: 30px;
-  background: #fff;
-}
+.horizontal-home-dot.active { width: 30px; background: #fff; }
 
 .horizontal-home-arrow {
   position: fixed;
