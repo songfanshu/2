@@ -26,6 +26,7 @@ sections:
     content:
       title: 最新动态
       subtitle: 实验室新闻与科研进展
+      text: ""
       count: 6
       filters:
         folders:
