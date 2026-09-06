@@ -1,2 +1,2 @@
-{{ $js := resources.Get "js/horizontal-home.js" }}
-{{ with $js }}<script src="{{ .RelPermalink }}?v=20260907-3"></script>{{ end }}
+{{ $js := resources.Get "js/horizontal-home.js" | resources.Fingerprint "sha256" }}
+{{ with $js }}<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>{{ end }}
