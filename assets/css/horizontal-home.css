@@ -1,29 +1,40 @@
 /* Fullscreen horizontal homepage slides. */
 html.lab-horizontal-home,
 body.lab-horizontal-home {
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
   margin: 0 !important;
   overflow: hidden !important;
-  overscroll-behavior: none;
+  overscroll-behavior: none !important;
 }
 
+body.lab-horizontal-home,
 body.lab-horizontal-home .page-body,
 body.lab-horizontal-home main {
-  position: relative !important;
   width: 100vw !important;
   height: 100vh !important;
   min-height: 100vh !important;
-  max-width: none !important;
   margin: 0 !important;
   padding: 0 !important;
   overflow: hidden !important;
 }
 
+body.lab-horizontal-home main {
+  position: relative !important;
+  display: block !important;
+  max-width: none !important;
+}
+
+body.lab-horizontal-home .page-body {
+  position: relative !important;
+}
+
 .lab-horizontal-track {
+  position: absolute !important;
+  inset: 0 auto auto 0 !important;
   display: flex !important;
   flex-flow: row nowrap !important;
-  width: max-content;
   height: 100vh !important;
   min-height: 100vh !important;
   margin: 0 !important;
@@ -34,7 +45,6 @@ body.lab-horizontal-home main {
 }
 
 .lab-horizontal-slide {
-  position: relative !important;
   flex: 0 0 100vw !important;
   width: 100vw !important;
   min-width: 100vw !important;
@@ -45,6 +55,7 @@ body.lab-horizontal-home main {
   padding: 0 !important;
   overflow: hidden auto !important;
   box-sizing: border-box !important;
+  scroll-behavior: smooth;
 }
 
 .lab-horizontal-slide .container,
@@ -80,6 +91,7 @@ body.lab-horizontal-home main {
   box-sizing: border-box;
 }
 
+/* Keep the normal site chrome above the horizontal slide track. */
 .page-header {
   position: fixed !important;
   inset: 0 0 auto 0 !important;
