@@ -2,6 +2,7 @@
 title: 刘阳辉
 first_name: Yanghui
 last_name: Liu
+avatar_filename: liuyanghui.jpg
 role: 副教授，硕士生导师
 organizations:
   - name: 中山大学材料学院

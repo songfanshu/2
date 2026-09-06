@@ -2,6 +2,7 @@
 title: 曾剑敏
 first_name: Jianmin
 last_name: Zeng
+avatar_filename: zengjianmin.jpg
 role: 副教授，博士生导师
 organizations:
   - name: 中山大学材料学院

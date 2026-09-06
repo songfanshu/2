@@ -2,6 +2,7 @@
 title: 汪宏
 first_name: Hong
 last_name: Wang
+avatar_filename: wanghong.jpg
 role: 副教授，硕士生导师
 organizations:
   - name: 中山大学材料学院
