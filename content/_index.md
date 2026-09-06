@@ -1,5 +1,4 @@
 ---
-# Leave the homepage title empty to use the site title
 title: ''
 date: 2026-03-20
 type: landing
@@ -65,21 +64,37 @@ sections:
       background:
         color: '#ffffff'
 
-  - block: people
+  - block: markdown
     content:
       title: '团队成员'
-      user_groups:
-        - Professor
-        - Associate Professor
-        - Doctors
-        - Master's degree
-        - Graduate
-      sort_by: Params.last_name
-      sort_ascending: true
+      subtitle: 'Team Members'
+      text: |
+        <div class="lab-team-grid">
+          <article class="lab-team-card">
+            <img class="lab-team-photo" src="/images/liuyanghui.jpg" alt="刘阳辉">
+            <h3 class="lab-team-name">刘阳辉</h3>
+            <p class="lab-team-role">副教授 · 硕士生导师</p>
+            <p class="lab-team-bio">主要研究氧化物薄膜晶体管、神经形态器件以及新型生物化学传感器。</p>
+          </article>
+          <article class="lab-team-card">
+            <img class="lab-team-photo" src="/images/wanghong.jpg" alt="汪宏">
+            <h3 class="lab-team-name">汪宏</h3>
+            <p class="lab-team-role">副教授 · 硕士生导师</p>
+            <p class="lab-team-bio">主要研究宽禁带半导体外延与器件、有机半导体材料与器件以及柔性传感器。</p>
+          </article>
+          <article class="lab-team-card">
+            <img class="lab-team-photo" src="/images/zengjianmin.jpg" alt="曾剑敏">
+            <h3 class="lab-team-name">曾剑敏</h3>
+            <p class="lab-team-role">副教授 · 博士生导师</p>
+            <p class="lab-team-bio">主要研究新原理器件、忆阻器与存算一体、光电忆阻器及面向感存算的神经形态计算。</p>
+          </article>
+        </div>
     design:
-      show_interests: false
-      show_role: true
-      show_social: false
+      columns: '1'
+      background:
+        color: '#f4f7fb'
+      spacing:
+        padding: ['70px', '0', '70px', '0']
 
   - block: markdown
     content:
