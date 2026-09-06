@@ -20,19 +20,17 @@ body.lab-horizontal-home main {
   overflow: hidden !important;
 }
 
-body.lab-horizontal-home main {
+body.lab-horizontal-home main,
+body.lab-horizontal-home .page-body {
   position: relative !important;
   display: block !important;
   max-width: none !important;
 }
 
-body.lab-horizontal-home .page-body {
-  position: relative !important;
-}
-
 .lab-horizontal-track {
-  position: absolute !important;
-  inset: 0 auto auto 0 !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
   display: flex !important;
   flex-flow: row nowrap !important;
   height: 100vh !important;
@@ -42,6 +40,7 @@ body.lab-horizontal-home .page-body {
   transform: translate3d(0, 0, 0);
   transition: transform 700ms cubic-bezier(.22,.61,.36,1);
   will-change: transform;
+  z-index: 1 !important;
 }
 
 .lab-horizontal-slide {
@@ -55,7 +54,6 @@ body.lab-horizontal-home .page-body {
   padding: 0 !important;
   overflow: hidden auto !important;
   box-sizing: border-box !important;
-  scroll-behavior: smooth;
 }
 
 .lab-horizontal-slide .container,
@@ -91,7 +89,6 @@ body.lab-horizontal-home .page-body {
   box-sizing: border-box;
 }
 
-/* Keep the normal site chrome above the horizontal slide track. */
 .page-header {
   position: fixed !important;
   inset: 0 0 auto 0 !important;
@@ -120,10 +117,7 @@ body.lab-horizontal-home .page-body {
   transition: width .25s ease, background .25s ease;
 }
 
-.lab-slide-dot.active {
-  width: 30px;
-  background: #fff;
-}
+.lab-slide-dot.active { width: 30px; background: #fff; }
 
 .lab-slide-arrow {
   position: fixed;
