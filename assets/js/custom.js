@@ -1,77 +1,86 @@
-/* =========================================================
-   LAB HOMEPAGE — REAL FULLSCREEN HORIZONTAL SLIDES
-   Loaded by HugoBlox as the site's custom JavaScript.
-   ========================================================= */
+/* Horizontal homepage navigation for HugoBlox. */
 (function () {
   'use strict';
+
+  var state = {
+    current: 0,
+    locked: false,
+    startX: 0,
+    startY: 0
+  };
 
   function boot() {
     if (window.__LAB_HORIZONTAL_READY__) return;
 
     var body = document.body;
-    if (!body) return;
+    var pageBody = document.querySelector('body.page-wrapper > .page-body') ||
+      document.querySelector('.page-body');
 
-    var pageBody = document.querySelector('.page-body');
-    if (!pageBody) return;
+    if (!body || !pageBody) return;
 
-    var slides = Array.prototype.slice.call(pageBody.querySelectorAll('.home-section'));
+    var slides = Array.prototype.slice.call(
+      pageBody.querySelectorAll(':scope > .home-section')
+    );
+
+    if (slides.length < 2) {
+      slides = Array.prototype.slice.call(pageBody.querySelectorAll('.home-section'));
+    }
+
     if (slides.length < 2) return;
 
     window.__LAB_HORIZONTAL_READY__ = true;
 
     var track = document.createElement('div');
     track.className = 'lab-horizontal-track';
-
     slides.forEach(function (slide) {
       slide.classList.add('lab-horizontal-slide');
       track.appendChild(slide);
     });
 
-    pageBody.innerHTML = '';
-    pageBody.appendChild(track);
+    pageBody.replaceChildren(track);
+    body.classList.add('lab-horizontal-home');
+    document.documentElement.classList.add('lab-horizontal-home');
 
     var total = slides.length;
-    var current = 0;
-    var locked = false;
-    var touchStartX = 0;
-    var touchStartY = 0;
+    var dots = document.createElement('div');
+    dots.className = 'lab-slide-dots';
+    dots.setAttribute('aria-label', '首页页面导航');
 
     function update() {
-      track.style.transform = 'translate3d(-' + (current * 100) + 'vw,0,0)';
-      document.querySelectorAll('.lab-slide-dot').forEach(function (dot, i) {
-        dot.classList.toggle('active', i === current);
+      track.style.width = (total * 100) + 'vw';
+      track.style.transform = 'translate3d(-' + (state.current * 100) + 'vw, 0, 0)';
+      dots.querySelectorAll('.lab-slide-dot').forEach(function (dot, index) {
+        dot.classList.toggle('active', index === state.current);
+        dot.setAttribute('aria-current', index === state.current ? 'page' : 'false');
       });
-      prev.disabled = current === 0;
-      next.disabled = current === total - 1;
+      prev.disabled = state.current === 0;
+      next.disabled = state.current === total - 1;
     }
 
-    function go(index) {
-      current = Math.max(0, Math.min(index, total - 1));
-      track.style.transitionDuration = '700ms';
+    function goTo(index, immediate) {
+      state.current = Math.max(0, Math.min(index, total - 1));
+      track.style.transitionDuration = immediate ? '0ms' : '700ms';
       update();
     }
 
     function step(direction) {
-      if (locked) return;
-      var target = Math.max(0, Math.min(current + direction, total - 1));
-      if (target === current) return;
-      locked = true;
-      go(target);
-      window.setTimeout(function () { locked = false; }, 760);
+      if (state.locked) return;
+      var target = Math.max(0, Math.min(state.current + direction, total - 1));
+      if (target === state.current) return;
+      state.locked = true;
+      goTo(target, false);
+      window.setTimeout(function () { state.locked = false; }, 760);
     }
 
-    var dots = document.createElement('div');
-    dots.className = 'lab-slide-dots';
-
-    for (var i = 0; i < total; i++) {
-      (function (index) {
+    for (var index = 0; index < total; index += 1) {
+      (function (slideIndex) {
         var dot = document.createElement('button');
         dot.type = 'button';
         dot.className = 'lab-slide-dot';
-        dot.setAttribute('aria-label', '第 ' + (index + 1) + ' 页');
-        dot.addEventListener('click', function () { go(index); });
+        dot.setAttribute('aria-label', '跳转到第 ' + (slideIndex + 1) + ' 页');
+        dot.addEventListener('click', function () { goTo(slideIndex, false); });
         dots.appendChild(dot);
-      })(i);
+      })(index);
     }
 
     var prev = document.createElement('button');
@@ -91,12 +100,9 @@
     body.appendChild(dots);
     body.appendChild(prev);
     body.appendChild(next);
-    body.classList.add('lab-horizontal-home');
-    document.documentElement.classList.add('lab-horizontal-home');
 
     window.addEventListener('wheel', function (event) {
-      if (!document.body.classList.contains('lab-horizontal-home')) return;
-      if (Math.abs(event.deltaY) < 12) return;
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX) || Math.abs(event.deltaY) < 12) return;
       event.preventDefault();
       step(event.deltaY > 0 ? 1 : -1);
     }, { passive: false });
@@ -104,40 +110,50 @@
     window.addEventListener('keydown', function (event) {
       var tag = document.activeElement && document.activeElement.tagName;
       if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
-      if (event.key === 'ArrowRight' || event.key === 'PageDown') {
-        event.preventDefault(); step(1);
+      if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
+        event.preventDefault();
+        step(1);
       } else if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
-        event.preventDefault(); step(-1);
+        event.preventDefault();
+        step(-1);
       } else if (event.key === 'Home') {
-        event.preventDefault(); go(0);
+        event.preventDefault();
+        goTo(0, false);
       } else if (event.key === 'End') {
-        event.preventDefault(); go(total - 1);
+        event.preventDefault();
+        goTo(total - 1, false);
       }
     });
 
     window.addEventListener('touchstart', function (event) {
       if (!event.touches.length) return;
-      touchStartX = event.touches[0].clientX;
-      touchStartY = event.touches[0].clientY;
+      state.startX = event.touches[0].clientX;
+      state.startY = event.touches[0].clientY;
     }, { passive: true });
 
     window.addEventListener('touchend', function (event) {
       if (!event.changedTouches.length) return;
-      var dx = event.changedTouches[0].clientX - touchStartX;
-      var dy = event.changedTouches[0].clientY - touchStartY;
-      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
-      step(dx < 0 ? 1 : -1);
+      var dx = event.changedTouches[0].clientX - state.startX;
+      var dy = event.changedTouches[0].clientY - state.startY;
+      if (Math.abs(dx) >= 50 && Math.abs(dx) > Math.abs(dy)) {
+        step(dx < 0 ? 1 : -1);
+      }
     }, { passive: true });
 
-    window.addEventListener('resize', function () { update(); });
+    window.addEventListener('resize', function () { goTo(state.current, true); });
+    goTo(0, true);
+  }
 
-    update();
+  function scheduleBoot() {
+    boot();
+    window.setTimeout(boot, 300);
+    window.setTimeout(boot, 1200);
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
+    document.addEventListener('DOMContentLoaded', scheduleBoot);
   } else {
-    boot();
+    scheduleBoot();
   }
-  window.addEventListener('load', boot);
+  window.addEventListener('load', scheduleBoot);
 })();
