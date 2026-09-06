@@ -1,0 +1,2 @@
+{{ $js := resources.Get "js/horizontal-home.js" }}
+{{ with $js }}<script src="{{ .RelPermalink }}"></script>{{ end }}
