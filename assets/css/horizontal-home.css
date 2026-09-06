@@ -3,14 +3,18 @@ html.lab-horizontal-home,
 body.lab-horizontal-home {
   width: 100%;
   height: 100%;
+  margin: 0 !important;
   overflow: hidden !important;
   overscroll-behavior: none;
 }
 
-body.lab-horizontal-home .page-body {
+body.lab-horizontal-home .page-body,
+body.lab-horizontal-home main {
+  position: relative !important;
   width: 100vw !important;
   height: 100vh !important;
   min-height: 100vh !important;
+  max-width: none !important;
   margin: 0 !important;
   padding: 0 !important;
   overflow: hidden !important;
@@ -19,6 +23,7 @@ body.lab-horizontal-home .page-body {
 .lab-horizontal-track {
   display: flex !important;
   flex-flow: row nowrap !important;
+  width: max-content;
   height: 100vh !important;
   min-height: 100vh !important;
   margin: 0 !important;
@@ -29,6 +34,7 @@ body.lab-horizontal-home .page-body {
 }
 
 .lab-horizontal-slide {
+  position: relative !important;
   flex: 0 0 100vw !important;
   width: 100vw !important;
   min-width: 100vw !important;
