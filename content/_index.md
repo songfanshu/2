@@ -65,6 +65,22 @@ sections:
       background:
         color: '#ffffff'
 
+  - block: people
+    content:
+      title: '团队成员'
+      user_groups:
+        - Professor
+        - Associate Professor
+        - Doctors
+        - Master's degree
+        - Graduate
+      sort_by: Params.last_name
+      sort_ascending: true
+    design:
+      show_interests: false
+      show_role: true
+      show_social: false
+
   - block: markdown
     content:
       title: ''
