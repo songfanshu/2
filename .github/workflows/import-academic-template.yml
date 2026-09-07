@@ -1,0 +1,76 @@
+name: Import Academic Website Template
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - academic-template
+
+permissions:
+  contents: write
+
+jobs:
+  import-template:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout my repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Import template
+        run: |
+          git clone --depth 1 --branch source https://github.com/Plale-Lab/plale-lab.github.io.git /tmp/academic-template
+          rm -rf /tmp/academic-template/.git
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' ! -name '.github' -exec rm -rf {} +
+          cp -a /tmp/academic-template/. .
+          rm -rf .github
+          mkdir -p .github/workflows
+          cat > .github/workflows/pages.yml <<'EOF'
+          name: Build and Deploy Jekyll site
+
+          on:
+            push:
+              branches:
+                - academic-template
+            workflow_dispatch:
+
+          permissions:
+            contents: read
+            pages: write
+            id-token: write
+
+          jobs:
+            build:
+              runs-on: ubuntu-latest
+              steps:
+                - uses: actions/checkout@v4
+                - uses: actions/configure-pages@v5
+                - uses: ruby/setup-ruby@v1
+                  with:
+                    ruby-version: '3.3'
+                    bundler-cache: true
+                - name: Build
+                  run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+                - uses: actions/upload-pages-artifact@v3
+                  with:
+                    path: ./_site
+
+            deploy:
+              needs: build
+              runs-on: ubuntu-latest
+              environment:
+                name: github-pages
+                url: ${{ steps.deployment.outputs.page_url }}
+              steps:
+                - id: deployment
+                  uses: actions/deploy-pages@v4
+          EOF
+
+      - name: Commit imported template
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "导入 Academic Website Template" || echo "No changes to commit"
+          git push
